@@ -1,0 +1,12 @@
+[user]
+	email = StuffQilla@gmail.com
+	name = SupaStuff
+[push]
+	default = simple
+[alias]
+	lg = log --oneline --decorate --graph --all
+	rmignored = ! git ls-files -i --exclude-from=.gitignore | xargs git rm --cached
+[github]
+	user = SupaStuff
+[core]
+	editor = vim

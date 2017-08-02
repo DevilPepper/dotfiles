@@ -1,0 +1,16 @@
+#!/bin/bash
+alias google-chrome='google-chrome-stable'
+alias open-sesame='pcmanfm .'
+alias reload='. ~/.bashrc;'
+alias mankey='python ~/code/spare/mankey/mankey.py'
+alias androiddev='/opt/android-studio/bin/studio.sh'
+alias beautiful='python -m json.tool'
+alias search='find . -type f -print0 | xargs -0 grep'
+alias mkvirtualenv2='mkvirtualenv -p /usr/bin/python2'
+alias zips2d='unzip "*.zip" -d'
+alias open='xdg-open'
+alias pacman-log='cat /var/log/pacman.log |grep PACMAN'
+alias terminal='xterm'
+alias tmux-apocalypse='tmux ls | grep : | cut -d: -f1 | xargs -n 1 -r tmux kill-session -t'
+alias comment='sed -i "s/^\"$1\"/#/" '
+
