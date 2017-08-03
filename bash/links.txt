@@ -1,0 +1,3 @@
+bashrc ~/.bashrc
+alias ~/.dotfiles/alias
+env ~/.dotfiles/env
