@@ -56,25 +56,9 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-source ~/.custom/git_prompt.sh
 
 if [ "$color_prompt" = yes ]; then
-	reset_color="\[\033[00m\]"
-	time_color="\[\033[01;31m\]"
-	user_color="\[\033[01;34m\]"
-	host_color="\[\033[01;34m\]"
-	dir_color="\[\033[01;32m\]"
-	multiline_color="\[\033[01;30m\]"
-
-	prompt_txt="[00:00 AM]$USER@$HOSTNAME:"
-	multiline_txt=$(printf %${#prompt_txt}s | tr " " "|")
-
-    #PS1='${debian_chroot:+($debian_chroot)}[${time_color}\@${reset_color}]${user_color}\u${reset_color}@${host_color}\H${reset_color}:${dir_color}\W${reset_color}\$ '
-	#PS2='${debian_chroot:+($debian_chroot)}${multiline_color}${multiline_txt}${reset_color}${dir_color}\W${reset_color}> '
-
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='${debian_chroot:+($debian_chroot)}[\[\033[01;31m\]\@\[\033[00m\]]\[\033[01;34m\]\u\[\033[00m\]@\[\033[01;34m\]\H\[\033[00m\]:\[\033[01;32m\]\W\[\033[00m\] $(git_prompt)\$ '
-	PS2='${debian_chroot:+($debian_chroot)}\[\033[01;30m\]${multiline_txt}\[\033[00m\]\[\033[01;32m\]\W\[\033[00m\] $(git_prompt)> '
+    source ~/.custom/prompt.sh
 else
     PS1='${debian_chroot:+($debian_chroot)}[\@] \u:\W\$ '
 fi
