@@ -111,6 +111,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source ~/.dotfiles/alias
-source ~/.dotfiles/env
-source ~/.secret
+source ~/.custom/alias
+source ~/.custom/env
+source ~/.custom/.secret
