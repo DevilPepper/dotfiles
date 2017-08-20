@@ -1,3 +1,0 @@
-xinitrc ~/.xinitrc
-Xresources ~/.Xresources
-inspiron2015 ~/.dotfiles/.inspiron2015
