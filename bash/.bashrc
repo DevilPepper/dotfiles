@@ -113,4 +113,8 @@ fi
 
 source ~/.custom/alias
 source ~/.custom/env
-source ~/.custom/.secret
+
+if [ -f ~/.custom/.secret ]; then
+    source ~/.custom/.secret
+fi
+
