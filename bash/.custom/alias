@@ -13,4 +13,5 @@ alias pacman-log='cat /var/log/pacman.log |grep PACMAN'
 alias terminal='xterm'
 alias tmux-apocalypse='tmux ls | grep : | cut -d: -f1 | xargs -n 1 -r tmux kill-session -t'
 alias comment='sed -i "s/^\"$1\"/#/" '
+alias envi='. envi'
 
