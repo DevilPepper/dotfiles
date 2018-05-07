@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/.custom/git_prompt.sh
+source ~/dotfiles/bash/.custom/git_prompt.sh
 
 reset_color=\\033\[00m
 
