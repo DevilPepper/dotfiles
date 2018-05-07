@@ -84,6 +84,6 @@ git_prompt() {
         local state=$(git_status)
         local color=$(git_color $state)
         # Now output the actual code to insert the branch and status
-        echo -e " \x01$color\x02($branch)\x01\033[00m\x02"  # last bit resets color
+        echo -e " (\x01$color\x02$branch\x01\033[00m\x02)"  # last bit resets color
     fi
 }
