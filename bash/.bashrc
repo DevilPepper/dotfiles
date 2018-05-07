@@ -56,6 +56,8 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# sometimes, that^ doesn't work right
+color_prompt=yes
 
 if [ "$color_prompt" = yes ]; then
     source ~/.custom/prompt.sh
