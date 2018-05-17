@@ -1,0 +1,52 @@
+"*":
+  core:
+    autoHideMenuBar: true
+    disabledPackages: [
+      "vim-mode-plus"
+    ]
+    telemetryConsent: "no"
+    themes: [
+      "one-dark-ui"
+      "solarized-dark-syntax"
+    ]
+  editor:
+    fontSize: 14
+  "exception-reporting":
+    userId: "ec26efbf-2e56-4d2a-8a44-71a794e09b54"
+  "platformio-ide-terminal":
+    ansiColors:
+      normal:
+        black: "#002b36"
+        blue: "#839496"
+        cyan: "#93a1a1"
+        green: "#586e75"
+        magenta: "#6c71c4"
+        red: "#cb4b16"
+        white: "#fdf6e3"
+        yellow: "#657b83"
+      zBright:
+        brightBlack: "#073642"
+        brightBlue: "#268bd2"
+        brightCyan: "#2aa198"
+        brightGreen: "#859900"
+        brightMagenta: "#d33682"
+        brightRed: "#dc322f"
+        brightWhite: "#eee8d5"
+        brightYellow: "#b58900"
+    autoHideMenuBar: true
+    style:
+      defaultPanelHeight: "99%"
+      fontFamily: "Consolas"
+      fontSize: "14"
+      theme: "solarized-dark"
+    toggles:
+      autoClose: true
+      runInsertedText: false
+      selectToCopy: false
+  "terminal-plus":
+    core:
+      shell: "powershell"
+    toggles:
+      autoClose: true
+  welcome:
+    showOnStartup: false
