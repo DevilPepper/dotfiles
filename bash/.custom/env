@@ -1,9 +1,11 @@
 #!/bin/bash
 
-timelink=$(readlink /etc/localtime)
-timefile="${timelink##*/}"
-timepath="${timelink%/*}"
-export TZ="${timepath##*/}/$timefile"
+if [ -z "$TZ" ]; then
+    timelink=$(readlink /etc/localtime)
+    timefile="${timelink##*/}"
+    timepath="${timelink%/*}"
+    export TZ="${timepath##*/}/$timefile"
+fi
 
 PATH=$PATH:~/bin
 for d in /opt/*/bin; do PATH="$PATH:$d"; done
