@@ -120,3 +120,6 @@ if [ -f ~/.custom/.secret ]; then
     source ~/.custom/.secret
 fi
 
+if [ -f ~/.optional ]; then
+    source ~/.optional
+fi
