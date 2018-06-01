@@ -6,6 +6,9 @@
 [alias]
 	lg = log --oneline --decorate --graph --all
 	rmignored = ! git ls-files -i --exclude-from=.gitignore | xargs git rm --cached
+    alias = ! git config --get-regexp alias | sed 's/alias\\./git /'
+    gh = "!f() { repo=$1; shift; git clone https://github.com/$repo.git $*; }; f"
+    bb = "!f() { repo=$1; shift; git clone https://bitbucket.org/$repo.git $*; }; f"
 [github]
 	user = SupaStuff
 [core]
