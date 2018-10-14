@@ -9,8 +9,9 @@
   alias = ! git config --get-regexp alias | sed 's/alias\\./git /'
 	description = "!describe() { git config branch.\"$1\".description; }; describe"
 	about = ! git description $(git branch | grep \\* | cut -d ' ' -f2)
-  gh = "!f() { repo=$1; shift; git clone https://github.com/$repo.git $*; }; f"
-  bb = "!f() { repo=$1; shift; git clone https://bitbucket.org/$repo.git $*; }; f"
+  gh = "!f() { repo=$1; shift; git clone git@github.com:$repo.git $*; }; f"
+  bb = "!f() { repo=$1; shift; git clone git@bitbucket.org:$repo.git $*; }; f"
+  gl = "!f() { repo=$1; shift; git clone git@gitlab.com:$repo.git $*; }; f"
 	new = "!new_branch() { git checkout -b \"$1\" && git push -u origin \"$1\"; }; new_branch"
 	delete = push origin --delete
 	del  = branch -D
