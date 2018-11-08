@@ -16,6 +16,7 @@
     new         = "!git_new() { git checkout -b $1 && git push -u origin $1 || git checkout -; }; git_new"
     sync        = "!git_sync() { git checkout $1 && git pull upstream $1 && git push --force; git checkout -; }; git_sync"
     delete      = "!git_delete() { git branch -D $* && git push origin --delete $*; }; git_delete"
+    trim        = ! git_diff_upstream_local | xargs git delete
 [github]
     user = SupaStuff
 [core]
