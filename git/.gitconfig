@@ -4,19 +4,18 @@
 [push]
     default = simple
 [alias]
+    co          = checkout
     lg          = log --oneline --decorate --graph --all
     rmignored   = ! git ls-files -i --exclude-from=.gitignore | xargs git rm --cached
     alias       = ! git config --get-regexp alias | sed 's/alias\\./git /'
-    description = "!describe() { git config branch.\"$1\".description; }; describe"
     about       = ! git description $(git branch | grep \\* | cut -d ' ' -f2)
+    description = "!git_describe() { git config branch.$1.description; }; git_describe"
     gh          = "!f() { repo=$1; shift; git clone git@github.com:$repo.git $*; }; f"
     bb          = "!f() { repo=$1; shift; git clone git@bitbucket.org:$repo.git $*; }; f"
     gl          = "!f() { repo=$1; shift; git clone git@gitlab.com:$repo.git $*; }; f"
-    new         = "!new_branch() { git checkout -b \"$1\" && git push -u origin \"$1\"; }; new_branch"
-    sync        = "!git_sync() { git checkout \"$1\" && git pull upstream \"$1\" && git push --force && git checkout -; }; git_new"
-    delete      = push origin --delete
-    del         = branch -D
-    co          = checkout
+    new         = "!git_new() { git checkout -b $1 && git push -u origin $1 || git checkout -; }; git_new"
+    sync        = "!git_sync() { git checkout $1 && git pull upstream $1 && git push --force; git checkout -; }; git_sync"
+    delete      = "!git_delete() { git branch -D $* && git push origin --delete $*; }; git_delete"
 [github]
     user = SupaStuff
 [core]
