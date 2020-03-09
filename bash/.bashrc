@@ -115,6 +115,7 @@ fi
 
 source ~/.custom/alias
 source ~/.custom/env
+source ~/.custom/ssh
 
 if [ -f ~/.optional ]; then
     source ~/.optional
