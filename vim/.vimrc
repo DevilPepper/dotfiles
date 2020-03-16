@@ -1,3 +1,10 @@
+" you might've copied the default .vimrc because it does some useful stuff.
+" i.e. not_my_machine.vimrc does some things specifically useful for
+" whatever work place you're in, so you can't just delete it
+for vimrc in glob("~/*.vimrc")
+    source vimrc
+endfor
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Sections:

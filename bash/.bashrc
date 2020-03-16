@@ -2,6 +2,17 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# dip if not interactive
+[[ $- != *i* ]] && return
+
+# you might've copied the default .bashrc because it does some useful stuff.
+# i.e. not_my_machine.bashrc does some things specifically useful for
+# whatever work place you're in, so you can't just delete it
+for bashrc in ~/*.bashrc
+do
+    source $bashrc
+done
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -16,12 +27,18 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=100000
+HISTFILESIZE=-1
+
+# in case you load bash with default settings, this prevents the history from being truncated
+HISTFILE=~/.my_bash_history
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# append history every time the propmt is displayed
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
