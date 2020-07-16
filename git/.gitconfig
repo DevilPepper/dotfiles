@@ -7,6 +7,7 @@
     co          = checkout
     lg          = log --oneline --decorate --graph --all
 
+    over-here   = ! git fetch origin $(git rev-parse --abbrev-ref HEAD) && git reset --hard FETCH_HEAD
     about       = ! git description $(git branch | grep \\* | cut -d ' ' -f2)
     alias       = ! git config --get-regexp alias | sed 's/alias\\./git /'
     rmignored   = ! git ls-files -i --exclude-from=.gitignore | xargs git rm --cached
@@ -24,3 +25,5 @@
     user = SupaStuff
 [core]
     editor = vim
+[fetch]
+	prune = true
