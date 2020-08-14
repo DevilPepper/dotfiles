@@ -8,9 +8,10 @@
 	about       = ! git description $(git branch | grep \\* | cut -d ' ' -f2)
 	alias       = ! git config --get-regexp alias | sed 's/alias\\./git /'
 	amend       = ! git commit --amend --no-edit
-	conflux     = ! git_diff_upstream_local | xargs --no-run-if-empty git delete
 	over-here   = ! git fetch origin $(git rev-parse --abbrev-ref HEAD) && git reset --hard FETCH_HEAD
 	rmignored   = ! git ls-files -i --exclude-from=.gitignore | xargs --no-run-if-empty git rm --cached
+
+	conflux     = ! git_diff_upstream_local | xargs --no-run-if-empty git delete
 	trim        = ! git_diff_remote_local | xargs --no-run-if-empty git branch -d
 
 	delete      = "!git_delete() { git branch -D $* && git push origin --delete $*; }; git_delete"
