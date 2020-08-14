@@ -8,10 +8,10 @@
 	about       = ! git description $(git branch | grep \\* | cut -d ' ' -f2)
 	alias       = ! git config --get-regexp alias | sed 's/alias\\./git /'
 	amend       = ! git commit --amend --no-edit
-	conflux     = ! git_diff_upstream_local | xargs git delete
+	conflux     = ! git_diff_upstream_local | xargs --no-run-if-empty git delete
 	over-here   = ! git fetch origin $(git rev-parse --abbrev-ref HEAD) && git reset --hard FETCH_HEAD
-	rmignored   = ! git ls-files -i --exclude-from=.gitignore | xargs git rm --cached
-	trim        = ! git branch -d $(git_diff_remote_local)
+	rmignored   = ! git ls-files -i --exclude-from=.gitignore | xargs --no-run-if-empty git rm --cached
+	trim        = ! git_diff_remote_local | xargs --no-run-if-empty git branch -d
 
 	delete      = "!git_delete() { git branch -D $* && git push origin --delete $*; }; git_delete"
 	description = "!git_describe() { git config branch.$1.description; }; git_describe"
