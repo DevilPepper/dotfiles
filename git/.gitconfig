@@ -5,12 +5,13 @@
 	co          = checkout
 	lg          = log --oneline --decorate --graph --all
 
-	over-here   = ! git fetch origin $(git rev-parse --abbrev-ref HEAD) && git reset --hard FETCH_HEAD
 	about       = ! git description $(git branch | grep \\* | cut -d ' ' -f2)
 	alias       = ! git config --get-regexp alias | sed 's/alias\\./git /'
 	amend       = ! git commit --amend --no-edit
+	conflux     = ! git_diff_upstream_local | xargs git delete
+	over-here   = ! git fetch origin $(git rev-parse --abbrev-ref HEAD) && git reset --hard FETCH_HEAD
 	rmignored   = ! git ls-files -i --exclude-from=.gitignore | xargs git rm --cached
-	trim        = ! git_diff_upstream_local | xargs git delete
+	trim        = ! git branch -d $(git_diff_remote_local)
 
 	delete      = "!git_delete() { git branch -D $* && git push origin --delete $*; }; git_delete"
 	description = "!git_describe() { git config branch.$1.description; }; git_describe"
@@ -22,6 +23,7 @@
 	gl          = "!git_gl() { repo=$1; shift; git clone git@gitlab.com:$repo.git $*; }; git_gl"
 [core]
 	editor = vim
+	filemode = true
 	hooksPath = .githooks
 [fetch]
 	prune = true
