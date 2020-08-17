@@ -1,0 +1,17 @@
+#!/bin/bash
+#swaps 2 files or 2 folders
+if [[ ( "$#" == 2 ) && ( ( ( -a "$1" ) && ( -a "$2" ) ) || ( ( -d "$1" ) && ( -d "$2" ) ) )
+    && ( (! -L "$1" ) || (! -L"$2" ) ) ]]
+then
+    #both files or both folders and neither are symlinks
+    temp=/tmp/temp.tmp
+    mv $1 $temp
+    mv $2 $1
+    mv $temp $2
+else
+    echo "Usage:  ${0##*/} FILE1 FILE2"
+    echo "Usage:  ${0##*/} DIRECTORY1 DIRECTORY2"
+    echo "No symlinks"
+    exit 1
+fi
+
