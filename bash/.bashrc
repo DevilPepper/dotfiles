@@ -77,7 +77,7 @@ fi
 color_prompt=yes
 
 if [ "$color_prompt" = yes ]; then
-    source ~/.custom/prompt.sh
+    source ~/.config/bash/prompt.sh
 else
     PS1='${debian_chroot:+($debian_chroot)}[\@] \u:\W\$ '
 fi
@@ -130,9 +130,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source ~/.custom/alias
-source ~/.custom/env
-source ~/.custom/ssh > /dev/null 2>&1
+source ~/.config/bash/alias
+source ~/.config/bash/env
+source ~/.config/bash/ssh > /dev/null 2>&1
 
 if [ -f ~/.optional ]; then
     source ~/.optional

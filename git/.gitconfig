@@ -1,6 +1,8 @@
 [user]
-	email = <>
+	email = Stuff_Git_NaoResposta@outlook.com
 	name  = SupaStuff
+[include]
+	path = ~/work.gitconfig
 [alias]
 	co          = checkout
 	lg          = log --oneline --decorate --graph --all

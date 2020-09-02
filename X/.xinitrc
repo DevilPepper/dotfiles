@@ -53,7 +53,7 @@ fi
 #st -geometry 80x20+494-0 &
 #exec st -geometry 80x66+0+0 -name login
 
-source ~/.custom/inspiron2015
+source ~/.config/X/inspiron2015
 
 compton -b
 

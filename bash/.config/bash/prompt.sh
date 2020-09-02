@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/dotfiles/bash/.custom/git_prompt.sh
+source ~/.config/bash/git_prompt.sh
 
 reset_color=\\033\[00m
 
@@ -21,4 +21,3 @@ multiline_txt=$(printf %${#prompt_txt}s | tr " " "|")
 
 PS1='[$(_lit $time_color \@)]$(_lit $user_color \u)@$(_lit $host_color \H):$(_lit $dir_color \\\W)$(git_prompt)\$ '
 PS2='$(_lit $multiline_color $multiline_txt)$(_lit $dir_color \\\W)$(git_prompt)> '
-
