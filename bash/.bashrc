@@ -10,7 +10,9 @@
 # whatever work place you're in, so you can't just delete it
 for bashrc in ~/*.bashrc
 do
-    source $bashrc
+    if [ -e $bashrc ]; then
+      source $bashrc
+    fi
 done
 
 # If not running interactively, don't do anything
