@@ -2,13 +2,22 @@
 
 # Check for a currently running instance of the agent
 RUNNING_AGENT=`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`
-if [ "$RUNNING_AGENT" = "0" ]
+SSH_AGENT_SCRIPT="/tmp/ssh_agent_script"
+if [ "$RUNNING_AGENT" = "0" ] || [ ! -f $SSH_AGENT_SCRIPT ]
 then
+    if [ "$RUNNING_AGENT" != "0" ]
+    then
+      # kill existing ssh agent
+      ps -ax | grep 'ssh-agent -s' | grep -v grep | cut -d' ' -f2 | xargs kill
+    fi
     # Launch a new instance of the agent and add existing keys
-    eval $(ssh-agent -s)
+    ssh-agent -s > $SSH_AGENT_SCRIPT
+    eval $(cat $SSH_AGENT_SCRIPT)
     for key in $(ls ~/.ssh/*.pub)
     do
         # Removes .pub extension
         ssh-add ${key%.pub}
     done
+else
+    eval $(cat $SSH_AGENT_SCRIPT)
 fi
