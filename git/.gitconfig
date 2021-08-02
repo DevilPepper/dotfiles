@@ -1,6 +1,7 @@
 [user]
 	email = Stuff_Git_NaoResposta@outlook.com
 	name  = SupaStuff
+	signingkey = 9B27DAB6188375C6
 [include]
 	path = ~/work.gitconfig
 [alias]
@@ -32,3 +33,7 @@
 	prune = true
 [push]
 	default = simple
+[commit]
+ 	gpgsign = true
+[init]
+	defaultBranch = main
