@@ -7,7 +7,8 @@
 #     export TZ="${timepath##*/}/$timefile"
 # fi
 
-export TZ=$(curl -s http://geoip.ubuntu.com/lookup | grep -Po '<TimeZone>\K[^<]+')
+export TZ=$(curl -s http://geoip.ubuntu.com/lookup | grep -Eo '<TimeZone>[^<]+' | cut -d'>' -f2)
+export HOSTNAME
 
 PATH=$PATH:~/bin
 for d in /opt/*/bin; do PATH="$PATH:$d"; done
