@@ -1,7 +1,7 @@
 " you might've copied the default .vimrc because it does some useful stuff.
 " i.e. not_my_machine.vimrc does some things specifically useful for
 " whatever work place you're in, so you can't just delete it
-for vimrc in glob("~/*.vimrc")
+for vimrc in glob("~/*.vimrc", 0, 1)
     source vimrc
 endfor
 
@@ -28,17 +28,6 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 let skeletons#autoRegister = 1
 let skeletons#skeletonsDir = "~/.vim/skeletons"
@@ -307,6 +296,8 @@ endfunction
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+let g:snipMate = { 'snippet_version' : 1 }
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
