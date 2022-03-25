@@ -13,6 +13,14 @@ main() {
     do
         buildTree ${dir%/}
     done
+
+    # clone plugins if we have vim
+    if [ ! -z $(which vim) ]; then
+      rm -rf ~/.vim/pack
+      git clone --recurse-submodules git@github.com:SupaStuff/vim-plugins.git ~/.vim/pack
+      # TODO: Not working
+      # vim -c "helptags ALL"
+    fi
 }
 
 function buildTree {
@@ -30,4 +38,3 @@ function buildTree {
 }
 
 main "$@"
-
