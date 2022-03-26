@@ -17,7 +17,7 @@ main() {
     # clone plugins if we have vim
     if [ ! -z $(which vim) ]; then
       rm -rf ~/.vim/pack
-      git clone --recurse-submodules git@github.com:SupaStuff/vim-plugins.git ~/.vim/pack
+      git clone --recurse-submodules https://github.com/SupaStuff/vim-plugins.git ~/.vim/pack
       vim -s <(echo ":helptags ALL" && echo ":q")
     fi
 }
