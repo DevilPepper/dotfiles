@@ -9,7 +9,7 @@
 
 # export TZ=$(curl -s http://geoip.ubuntu.com/lookup | grep -Eo '<TimeZone>[^<]+' | cut -d'>' -f2)
 
-TZ_FILE=~/.config/timezone
+TZ_FILE=~/.timezone
 if [ -f "$TZ_FILE" ]; then
   export TZ=$(cat $TZ_FILE)
 fi
