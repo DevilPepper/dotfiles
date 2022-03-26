@@ -27,7 +27,9 @@
 	gl          = "!git_gl() { repo=$1; shift; git clone git@gitlab.com:$repo.git $*; }; git_gl"
 [core]
 	editor = vim
+  excludesfile = ~/.gitignore
 	filemode = true
+  hooksPath = .githooks
 [fetch]
 	prune = true
 [push]
