@@ -1,4 +1,4 @@
-# https://github.com/vim-syntastic/syntastic
+" https://github.com/vim-syntastic/syntastic
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5

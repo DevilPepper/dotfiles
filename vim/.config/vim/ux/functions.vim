@@ -22,7 +22,7 @@ function! VisualSelection(direction, extra_filter) range
 endfunction
 
 
-# Returns true if paste mode is enabled
+" Returns true if paste mode is enabled
 function! HasPaste()
     if &paste
         return 'PASTE MODE  '
@@ -30,7 +30,7 @@ function! HasPaste()
     return ''
 endfunction
 
-# Don't close window, when deleting a buffer
+" Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
    let l:currentBufNum = bufnr("%")

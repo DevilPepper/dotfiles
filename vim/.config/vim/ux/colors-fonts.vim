@@ -1,7 +1,7 @@
-# Enable syntax highlighting
+" Enable syntax highlighting
 syntax enable 
 
-# Enable 256 colors palette in Gnome Terminal
+" Enable 256 colors palette in Gnome Terminal
 if $COLORTERM == 'gnome-terminal'
     set t_Co=256
 endif
@@ -17,7 +17,7 @@ hi Normal guifg=White guibg=Black
 hi Folded guifg=SteelBlue guibg=Black
 hi LineNr guifg=Grey guibg=Black
 
-# Set font according to system
+" Set font according to system
 if has("mac") || has("macunix")
     set gfn=Hack:h14,Source\ Code\ Pro:h15,Menlo:h15
 elseif has("win16") || has("win32")
