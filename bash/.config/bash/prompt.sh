@@ -19,5 +19,5 @@ multiline_color=\\033\[0\;30m  #gray
 prompt_txt="[00:00 AM]$USER@$HOSTNAME:"
 multiline_txt=$(printf %${#prompt_txt}s | tr " " "|")
 
-PS1='[$(_lit $time_color \@)]$(_lit $user_color \u)@$(_lit $host_color \H):$(_lit $dir_color \\\W)$(git_prompt)\$ '
+PS1='[$(_lit $time_color \@)]$(_lit $user_color \u)@$(_lit $host_color ${hijacked_hostname-$HOSTNAME}):$(_lit $dir_color \\\W)$(git_prompt)\$ '
 PS2='$(_lit $multiline_color $multiline_txt)$(_lit $dir_color \\\W)$(git_prompt)> '
