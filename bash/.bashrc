@@ -81,7 +81,7 @@ color_prompt=yes
 if [ "$color_prompt" = yes ]; then
     source ~/.config/bash/prompt.sh
 else
-    PS1='${debian_chroot:+($debian_chroot)}[\@] \u:\W\$ '
+    PS1='\$ '
 fi
 unset color_prompt force_color_prompt
 

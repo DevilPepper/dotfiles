@@ -20,3 +20,5 @@ fi
 source ~/.config/bash/env
 source ~/.config/bash/alias
 source ~/.config/bash/ssh > /dev/null 2>&1
+
+echo $(whoami)@$HOSTNAME

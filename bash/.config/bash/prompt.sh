@@ -1,8 +1,11 @@
 #!/bin/bash
 
-source ~/.config/bash/git_prompt.sh
-
 reset_color=\\033\[00m
+
+red=\\033\[0\;31m
+blue=\\033\[0\;34m
+green=\\033\[0\;32m
+grey=\\033\[0\;30m
 
 _lit(){
     local color=$1
@@ -10,14 +13,15 @@ _lit(){
     echo -e "\x01$color\x02"$*"\x01$reset_color\x02"
 }
 
-time_color=\\033\[0\;31m       #red
-user_color=\\033\[0\;34m       #blue
-host_color=\\033\[0\;34m       #blue
-dir_color=\\033\[0\;32m        #green
-multiline_color=\\033\[0\;30m  #gray
+_prompt() {
+  local color=
+  case $(id -u) in
+    0) color=$red ;;
+    *) color=$green ;;
+  esac
 
-prompt_txt="[00:00 AM]$USER@$HOSTNAME:"
-multiline_txt=$(printf %${#prompt_txt}s | tr " " "|")
+  echo -e "$(_lit $color $1) "
+}
 
-PS1='[$(_lit $time_color \@)]$(_lit $user_color \u)@$(_lit $host_color ${hijacked_hostname-$HOSTNAME}):$(_lit $dir_color \\\W)$(git_prompt)\$ '
-PS2='$(_lit $multiline_color $multiline_txt)$(_lit $dir_color \\\W)$(git_prompt)> '
+PS1='$(_prompt ✗)'
+PS2='$(_prompt "-->>")'
