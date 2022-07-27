@@ -6,6 +6,9 @@
 	path = ~/secret.gitconfig
 [alias]
 	co          = checkout
+	cp          = clone --single-branch
+	get         = ! git fetch && git rebase FETCH_HEAD
+	root        = ! pwd
 	lg          = log --oneline --decorate --graph --all
 
 	about       = ! git description $(git branch | grep \\* | cut -d ' ' -f2)
@@ -15,7 +18,8 @@
 	rmignored   = ! git ls-files -i --exclude-from=.gitignore | xargs --no-run-if-empty git rm --cached
 
 	conflux     = ! git_diff_upstream_local | xargs --no-run-if-empty git delete
-	trim        = ! git_diff_remote_local | xargs --no-run-if-empty git branch -d
+	trim        = ! git_diff_remote_local | xargs -r git branch -D
+	lfx         = ! git lfs migrate import --no-rewrite --yes $(git diff --name-only) && git rebase -i
 
 	delete      = "!git_delete() { git branch -D $* && git push origin --delete $*; }; git_delete"
 	description = "!git_describe() { git config branch.$1.description; }; git_describe"
@@ -36,10 +40,14 @@
 	default = simple
 [pull]
   ff = only
+  rebase = true
 [commit]
  	gpgsign = true
 [init]
 	defaultBranch = main
+[diff]
+	colorMoved = dimmed-zebra
+	colorMovedWS = ignore-all-space
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
