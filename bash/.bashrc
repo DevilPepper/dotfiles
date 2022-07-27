@@ -39,9 +39,6 @@ HISTFILE=~/.my_history
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# append history every time the propmt is displayed
-PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
@@ -84,6 +81,9 @@ else
     PS1='\$ '
 fi
 unset color_prompt force_color_prompt
+
+# append history every time the propmt is displayed
+PROMPT_COMMAND="history -a; set_virtualenv; $PROMPT_COMMAND"
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in

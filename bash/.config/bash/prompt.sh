@@ -20,8 +20,20 @@ _prompt() {
     *) color=$green ;;
   esac
 
-  echo -e "$(_lit $color $1) "
+  echo -e "$(_lit $color $@) "
 }
 
-PS1='$(_prompt ✗)'
+PROMPT_PREFIX=" "
+# Change prompt if we are in virtual env or not
+function set_virtualenv() {
+  if test -z "$VIRTUAL_ENV"; then
+    PYTHON_VIRTUALENV=""
+    PROMPT_PREFIX=" "
+  else
+    PYTHON_VIRTUALENV="🐍"
+    PROMPT_PREFIX=""
+  fi
+}
+
+PS1='${PROMPT_PREFIX}$(_prompt "${PYTHON_VIRTUALENV:-✗}")'
 PS2='$(_prompt "-->>")'
