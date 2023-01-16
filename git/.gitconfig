@@ -1,6 +1,6 @@
 [user]
 	email = Stuff_Git_NaoResposta@outlook.com
-	name  = SupaStuff
+	name  = DevilPepper
 [include]
 	path = ~/work.gitconfig
 	path = ~/secret.gitconfig
