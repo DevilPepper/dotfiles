@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+if [ "$#" -ne 1 ]
+then
+  echo "Usage:"
+  echo "trust-key-ultimately FILENAME"
+  exit 1
+fi
+
+gpg --card-status || exit $?
+
+filename=$1
+KEY_ID=$(basename $filename)
+KEY_ID=${KEY_ID%%.*}
+
+gpg --import $filename
+gpg --edit-key $KEY_ID --command-fd 0 << EOF
+trust
+5
+quit
+EOF
+
+gpg-connect-agent reloadagent /bye

@@ -43,8 +43,7 @@ echo "Please remove old key IDs from ~/secret.gitconfig"
 echo "================================================="
 cat ~/secret.gitconfig
 
-NOW=$(date +"%Y%m%dT%H%M%S")
 gpg --armor --export $KEY_ID | xclip -selection clipboard
-gpg --armor --export $KEY_ID > /tmp/gpg-${NOW}.pub
+gpg --armor --export $KEY_ID > /tmp/${KEY_ID}.asc
 echo "Public key is in your clipboard and /tmp!"
-echo "copy /tmp/gpg-${NOW}.pub to all your machines that require it"
+echo "Copy /tmp/${KEY_ID}.asc to all your machines that require it"
