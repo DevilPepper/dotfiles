@@ -15,8 +15,9 @@ fi
 
 email=$1
 name=$2
-Y_NEXT=$((`date +%Y` + 1))
-DAYS_UNTIL_EXPIRED=$(( (`date -d "2024-01-01" +%s` - `date +%s`) / (60*60*24) ))
+# Y_NEXT=$((`date +%Y` + 1))
+# DAYS_UNTIL_EXPIRED=$(( (`date -d "2024-01-01" +%s` - `date +%s`) / (60*60*24) ))
+DAYS_UNTIL_EXPIRED=0
 
 echo "=================================================================="
 echo "You'll be prompted for your user pin first and then your admin pin"
