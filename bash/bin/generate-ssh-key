@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+if [ -z "$(which xclip)" ]
+then
+  echo "Please install xclip"
+  exit 1
+fi
+
+if [ "$#" -ne 2 ]
+then
+  echo "Usage:"
+  echo "generate-ssh-key EMAIL KEY_NAME"
+  exit 1
+fi
+
+email=$1
+name=$2
+
+ssh-keygen -t ed25519-sk \
+           -C "$email" \
+           -f ~/.ssh/$name \
+           -N ""
+
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/$name
+
+cat ~/.ssh/$name.pub | xclip -selection clipboard
+echo "Public key is in your clipboard!"
+
