@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-if [ -z "$(which xclip)" ]
-then
-  echo "Please install xclip"
-  exit 1
-fi
-
 if [ "$#" -ne 2 ]
 then
   echo "Usage:"
@@ -43,7 +37,9 @@ echo "Please remove old key IDs from ~/secret.gitconfig"
 echo "================================================="
 cat ~/secret.gitconfig
 
-gpg --armor --export $KEY_ID | xclip -selection clipboard
 gpg --armor --export $KEY_ID > /tmp/${KEY_ID}.asc
-echo "Public key is in your clipboard and /tmp!"
 echo "Copy /tmp/${KEY_ID}.asc to all your machines that require it"
+
+# Might fail here if clip alias is not defined
+gpg --armor --export $KEY_ID | clip
+echo "Public key is in your clipboard!"

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# decide between xclip or pbcopy because Macs...
+if [ ! -z "$(which xclip)" ]
+then
+  xclip -selection clipboard
+elif [ ! -z "$(which pbcopy)" ]
+then
+  pbcopy
+else
+  echo -e  "\033[31;1mCan't find the clipboard!\033[0m\n"
+  cat
+fi

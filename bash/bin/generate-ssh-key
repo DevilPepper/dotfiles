@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-if [ -z "$(which xclip)" ]
-then
-  echo "Please install xclip"
-  exit 1
-fi
-
 if [ "$#" -ne 2 ]
 then
   echo "Usage:"
@@ -24,6 +18,6 @@ ssh-keygen -t ed25519-sk \
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/$name
 
-cat ~/.ssh/$name.pub | xclip -selection clipboard
+# Might fail here if clip alias is not defined
+cat ~/.ssh/$name.pub | clip
 echo "Public key is in your clipboard!"
-
