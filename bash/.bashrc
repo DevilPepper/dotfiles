@@ -5,6 +5,8 @@
 # dip if not interactive
 [[ $- != *i* ]] && return
 
+HISTIGNORE=clear:exit:history
+
 # you might've copied the default .bashrc because it does some useful stuff.
 # i.e. not_my_machine.bashrc does some things specifically useful for
 # whatever work place you're in, so you can't just delete it
@@ -23,7 +25,7 @@ esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth:erasedups
 
 # append to the history file, don't overwrite it
 shopt -s histappend
