@@ -11,7 +11,7 @@
   cp          = clone --single-branch
   get         = ! git fetch && git rebase FETCH_HEAD
   root        = ! pwd
-  lg          = log --oneline --decorate --graph --all
+  adog        = log --all --decorate --oneline --graph
 
   about       = ! git description $(git branch | grep \\* | cut -d ' ' -f2)
   alias       = ! git config --get-regexp alias | sed 's/alias\\./git /'
