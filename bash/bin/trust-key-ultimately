@@ -14,7 +14,7 @@ KEY_ID=$(basename $filename)
 KEY_ID=${KEY_ID%%.*}
 
 gpg --import $filename
-gpg --edit-key $KEY_ID --command-fd 0 << EOF
+gpg --command-fd 0 --edit-key $KEY_ID << EOF
 trust
 5
 quit
