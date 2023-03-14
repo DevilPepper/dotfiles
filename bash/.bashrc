@@ -5,7 +5,7 @@
 # dip if not interactive
 [[ $- != *i* ]] && return
 
-HISTIGNORE=clear:exit:history
+HISTIGNORE=clear:exit:history:?:??
 
 # you might've copied the default .bashrc because it does some useful stuff.
 # i.e. not_my_machine.bashrc does some things specifically useful for
