@@ -22,7 +22,6 @@ for d in /opt/*/bin; do PATH="$PATH:$d"; done
 # androidstudio=/opt/android-studio
 # PATH=$PATH:$androidstudio/bin
 
-PATH=$PATH:$HOME/miniconda3/bin
 # PATH=$PATH:/opt/google/chrome/driver/
 
 PATH=$PATH:./node_modules/.bin
