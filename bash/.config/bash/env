@@ -16,11 +16,8 @@ fi
 
 export HOSTNAME
 
-PATH=$PATH:~/bin
+PATH=$PATH:~/.local/bin
 for d in /opt/*/bin; do PATH="$PATH:$d"; done
-
-# androidstudio=/opt/android-studio
-# PATH=$PATH:$androidstudio/bin
 
 # PATH=$PATH:/opt/google/chrome/driver/
 
@@ -32,13 +29,6 @@ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/i386-linux-gnu
 export PATH
 # export QUARTUS_64BIT=1
 export LD_LIBRARY_PATH
-# export centos=pena2163@134.74.126.104
-# export ctp='-X -L 8000:localhost:3000 -i ~/.ssh/stuff@ctp stuff@104.196.27.40'
-# export github=https://github.com/SupaStuff
-# export bitbucket=https://SupaStuff@bitbucket.org/SupaStuff
-# export bootstrap=https://github.com/twbs/bootstrap.git
-# export font_awesome=https://github.com/FortAwesome/Font-Awesome.git
-# export src=~/code/src
 # export public=/media/sf_Public
 export BROWSER="google-chrome"
 export GPG_TTY=$(tty)
