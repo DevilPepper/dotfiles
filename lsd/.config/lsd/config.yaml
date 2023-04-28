@@ -20,7 +20,7 @@ dereference: false
 icons:
   when: always
   # Possible values: fancy, unicode
-  theme: unicode
+  theme: fancy
   separator: " "
 
 # == Ignore Globs ==
