@@ -1,0 +1,27 @@
+user: white
+group: white
+permission:
+  read: white
+  write: white
+  exec: white
+  exec-sticky: white
+  no-access: black
+  octal: white
+  acl: dark_cyan
+  context: cyan
+date:
+  hour-old: cyan
+  day-old: grey
+  older: white
+size:
+  none: black
+  small: dark_grey
+  medium: grey
+  large: white
+# inode:
+#   valid: 13
+#   invalid: black
+# links:
+#   valid: 13
+#   invalid: black
+tree-edge: black

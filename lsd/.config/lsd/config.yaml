@@ -1,0 +1,55 @@
+# https://github.com/lsd-rs/lsd/tree/master#config-file-content
+classic: false
+
+blocks:
+  - permission
+  - user
+  - group
+  - date
+  - size
+  - name
+
+color:
+  when: always
+  theme: ./theme.yaml
+
+date: '+%Y-%m-%dT%H:%M:%S'
+dereference: false
+# display: all
+
+icons:
+  when: always
+  # Possible values: fancy, unicode
+  theme: unicode
+  separator: " "
+
+# == Ignore Globs ==
+# A list of globs to ignore when listing.
+# ignore-globs:
+#   - .git
+
+indicators: false
+
+# Possible values: grid, tree, oneline
+layout: grid
+
+recursion:
+  enabled: false
+  # infinite
+  # depth: 3
+
+size: default
+
+# Possible value: rwx, octal
+permission: rwx
+
+sorting:
+  column: name
+  reverse: false
+  dir-grouping: first
+
+no-symlink: false
+total-size: true
+hyperlink: never
+symlink-arrow: ->
+header: false
