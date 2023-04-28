@@ -17,7 +17,7 @@ fi
 export HOSTNAME
 
 PATH=$PATH:~/.local/bin
-for d in /opt/*/bin; do PATH="$PATH:$d"; done
+# for d in /opt/*/bin; do PATH="$PATH:$d"; done
 
 # PATH=$PATH:/opt/google/chrome/driver/
 
