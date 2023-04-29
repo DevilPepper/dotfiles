@@ -1,33 +1,9 @@
 #!/bin/bash
-alias google-chrome='google-chrome-stable'
-alias open-sesame='pcmanfm .'
 alias reload='. ~/.bashrc;'
-alias mankey='python ~/code/spare/mankey/mankey.py'
-alias androiddev='/opt/android-studio/bin/studio.sh'
 alias beautiful='python -m json.tool'
-alias search='find . -type f -print0 | xargs -0 grep'
-alias mkvirtualenv2='mkvirtualenv -p /usr/bin/python2'
-alias zips2d='unzip "*.zip" -d'
-alias open='xdg-open'
-alias pacman-log='cat /var/log/pacman.log |grep PACMAN'
-alias terminal='xterm'
+# alias open='xdg-open'
 alias tmux-apocalypse='tmux ls | grep : | cut -d: -f1 | xargs -n 1 -r tmux kill-session -t'
 alias comment='sed -i "s/^\"$1\"/#/" '
-alias envi='. envi'
 
-# some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    #alias grep='grep --color=auto'
-    #alias fgrep='fgrep --color=auto'
-    #alias egrep='egrep --color=auto'
-fi
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'

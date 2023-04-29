@@ -21,15 +21,15 @@ PATH=$PATH:~/.local/bin
 
 # PATH=$PATH:/opt/google/chrome/driver/
 
-PATH=$PATH:./node_modules/.bin
+# PATH=$PATH:./node_modules/.bin
 
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/i386-gnu
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/i386-linux-gnu
+# LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/i386-gnu
+# LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/i386-linux-gnu
 
 export PATH
 # export QUARTUS_64BIT=1
-export LD_LIBRARY_PATH
+# export LD_LIBRARY_PATH
 # export public=/media/sf_Public
-export BROWSER="google-chrome"
+# export BROWSER="google-chrome"
 export GPG_TTY=$(tty)
 export VIRTUAL_ENV_DISABLE_PROMPT=true
