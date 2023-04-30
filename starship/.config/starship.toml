@@ -1,0 +1,38 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+
+format = """$character """
+right_format = """
+$git_branch
+$git_state
+$nodejs
+$python
+"""
+# $git_status
+
+[character]
+format = """$symbol"""
+success_symbol = '[✗](bold green)'
+error_symbol = '[✗](bold red)'
+
+[git_branch]
+symbol = ''
+format = """[$symbol]($style)"""
+
+[git_state]
+format = """ [$state]($style)"""
+
+[git_status]
+format = """[$all_status]($style)"""
+
+[nodejs]
+symbol = ''
+format = """[$symbol]($style)"""
+detect_extensions = []
+
+[python]
+symbol = '🐍'
+format = """[$symbol]($style)"""
+detect_extensions = []
+detect_files = []
