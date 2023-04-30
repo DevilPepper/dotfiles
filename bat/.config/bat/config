@@ -1,0 +1,9 @@
+# See bat --help for info on available options
+
+--theme="ansi"
+
+--style="auto"
+
+--italic-text=always
+
+--nonprintable-notation=unicode
