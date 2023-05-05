@@ -10,7 +10,8 @@
   co          = checkout
   cp          = clone --single-branch
   get         = ! git fetch && git rebase FETCH_HEAD
-  root        = ! pwd
+  cwd         = ! pwd
+  root        = ! git rev-parse --absolute-git-dir | awk -F'/.git' '{ print $1 }'
   adog        = log --all --decorate --oneline --graph
 
   about       = ! git description $(git branch | grep \\* | cut -d ' ' -f2)
