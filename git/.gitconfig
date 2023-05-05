@@ -13,6 +13,7 @@
   cwd         = ! pwd
   root        = ! git rev-parse --absolute-git-dir | awk -F'/.git' '{ print $1 }'
   adog        = log --all --decorate --oneline --graph
+  is-repo     = ! git rev-parse --is-inside-work-tree > /dev/null 2>&1
 
   about       = ! git description $(git branch | grep \\* | cut -d ' ' -f2)
   alias       = ! git config --get-regexp alias | sed 's/alias\\./git /'
