@@ -49,7 +49,7 @@ sorting:
   dir-grouping: first
 
 no-symlink: false
-total-size: true
+total-size: false
 hyperlink: never
 symlink-arrow: ->
 header: false
