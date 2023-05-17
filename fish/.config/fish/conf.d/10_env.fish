@@ -5,6 +5,7 @@ set -x FZF_DEFAULT_COMMAND "fd --strip-cwd-prefix --hidden --exclude .git"
 
 set -x VIRTUAL_ENV_DISABLE_PROMPT true
 set -x N_PREFIX ~/.local/share/n
+set -x STACK_XDG true
 
 fish_add_path ~/.local/bin $N_PREFIX/bin
 

@@ -1,0 +1,10 @@
+name: cabal-xmonad
+version: 0.0.0
+
+executables:
+  xmonad-x86_64-linux:
+    main: xmonad.hs
+    dependencies:
+      - base
+      - xmonad
+      - xmonad-contrib

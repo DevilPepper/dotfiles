@@ -1,0 +1,12 @@
+resolver:
+  url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/20/21.yaml
+
+# https://docs.haskellstack.org/en/stable/pantry/#package-location
+extra-deps:
+- github: xmonad/xmonad
+  commit: a09ca446fb6cf52dbf4325b97a541d66aca4da9d
+  #    v: 0.17.2
+
+- github: xmonad/xmonad-contrib
+  commit: afd6824ce00063bb8e9b7a1c5daf0737c2f61616
+  #    v: 0.17.1
