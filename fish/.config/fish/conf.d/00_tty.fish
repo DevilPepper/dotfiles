@@ -24,5 +24,4 @@ if [ "$TERM" = "linux" ]
   # white
   echo -en "\e]P7bac2de"
   echo -en "\e]PFa6adc8"
-  clear
 end
