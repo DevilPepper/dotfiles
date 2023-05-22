@@ -16,8 +16,10 @@ main() {
 
     # clone plugins if we have vim
     if [ ! -z $(which vim) ]; then
-      rm -rf ~/.vim/pack
-      git clone --recurse-submodules https://github.com/DevilPepper/vim-plugins.git ~/.vim/pack
+      vim_data=~/.local/share/vim
+      mkdir -p $vim_data
+      rm -rf $vim_data/pack
+      git clone --recurse-submodules https://github.com/DevilPepper/vim-plugins.git $vim_data/pack
       vim -s <(echo ":helptags ALL" && echo ":q")
     fi
 }

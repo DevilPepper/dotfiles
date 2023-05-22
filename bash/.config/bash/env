@@ -16,7 +16,6 @@ fi
 
 export HOSTNAME
 
-PATH=$PATH:~/.local/bin
 # for d in /opt/*/bin; do PATH="$PATH:$d"; done
 
 # PATH=$PATH:/opt/google/chrome/driver/
@@ -33,5 +32,3 @@ export PATH
 # export BROWSER="google-chrome"
 export GPG_TTY=$(tty)
 export VIRTUAL_ENV_DISABLE_PROMPT=true
-export N_PREFIX=~/.local/share/n
-export PATH=$PATH:$N_PREFIX/bin

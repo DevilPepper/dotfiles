@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Copied from here: https://blog.joren.ga/vim-xdg
+for dir in $(echo "$PATH" | tr ":" "\n" | grep -Fxv "$(dirname $0)"); do
+  if [ -x "$dir/vim" ]; then
+    xdg_vim="$dir/vim"
+    break
+  fi
+done
+
+exec "$xdg_vim" -u "${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc" "$@"

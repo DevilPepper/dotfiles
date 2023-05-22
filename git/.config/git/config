@@ -4,8 +4,8 @@
 [commit]
   gpgsign = true
 [include]
-  path = ~/work.gitconfig
-  path = ~/secret.gitconfig
+  path = ~/.config/git/work.gitconfig
+  path = ~/.config/git/secret.gitconfig
 [alias]
   co          = checkout
   cp          = clone --single-branch
@@ -35,7 +35,7 @@
   gl          = "!git_gl() { repo=$1; shift; git clone git@gitlab.com:$repo.git $*; }; git_gl"
 [core]
   editor = vim
-  excludesfile = ~/.gitignore
+  excludesfile = ~/.config/git/ignore
   filemode = true
   hooksPath = .githooks
 [fetch]

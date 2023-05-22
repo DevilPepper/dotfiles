@@ -18,6 +18,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 source ~/.config/bash/env
+source ~/.config/bash/xdg
 source ~/.config/bash/alias
 source ~/.config/bash/ssh > /dev/null 2>&1
 
