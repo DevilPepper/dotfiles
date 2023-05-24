@@ -3,6 +3,7 @@ set FZF_PREVIEW "--preview 'bat --color=always {} 2> /dev/null || lsd -la {}'"
 set -x FZF_DEFAULT_OPTS "$FZF_BIND $FZF_PREVIEW"
 set -x FZF_DEFAULT_COMMAND "fd --strip-cwd-prefix --hidden --exclude .git"
 
+set -x GPG_TTY $(tty)
 set -x VIRTUAL_ENV_DISABLE_PROMPT true
 
 set -x HOSTNAME $HOSTNAME
