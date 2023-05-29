@@ -30,6 +30,12 @@
   new         = "!git_new() { git checkout -b $1 && git push -u origin $1 || git checkout -; }; git_new"
   sync        = "!git_sync() { git checkout $1 && git pull upstream $1 && git push --force; git checkout -; }; git_sync"
 
+  fzb-        = "!git_fzbp() { git diff --name-only $1...$2 && echo '---\\n\\n' && git diff --color=always $1...$2; }; git_fzbp"
+  fzb         = "!git_fzb() { git branch | sed 's/[ \\t\\*]*//' | fzf --preview=\"git fzb- ${1-origin/HEAD} {}\"; }; git_fzb"
+  fzc         = "!git_fzc() { git checkout $(git fzb $*); }; git_fzc"
+  fzd         = "!git_fzd() { git diff --name-only $* | fzf --preview=\"git diff --color=always $* -- {}\"; }; git_fzd"
+  fzs         = "!git_fzs() { git stage $(git ls-files -dmo | fzf --preview=\"git ls-files --error-unmatch {} > /dev/null 2>&1 && git diff --color=always -- {} || bat --color=always {}\"); }; git_fzs"
+
   bb          = "!git_bb() { repo=$1; shift; git clone git@bitbucket.org:$repo.git $*; }; git_bb"
   gh          = "!git_gh() { repo=$1; shift; git clone git@github.com:$repo.git $*; }; git_gh"
   gl          = "!git_gl() { repo=$1; shift; git clone git@gitlab.com:$repo.git $*; }; git_gl"
@@ -55,3 +61,5 @@
   process = git-lfs filter-process
   required = true
   clean = git-lfs clean -- %f
+[advice]
+  addEmptyPathspec = false
