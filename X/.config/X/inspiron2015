@@ -1,3 +1,0 @@
-#!/bin/bash
-#environment variables and stuff specific to my machine
-export ALSA_CARD=PCH
