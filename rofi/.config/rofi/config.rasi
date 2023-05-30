@@ -1,0 +1,21 @@
+configuration {
+  modi: [drun];
+  font: "CaskaydiaCove Nerd Font Mono 16";
+  dpi: 1;
+  width: 50;
+  // border-width
+  bw: 1;
+  padding: 10;
+  lines: 8;
+  columns: 1;
+  show-icons: true;
+  drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+  drun-match-fields: "name,generic,exec,categories";
+  drun-show-actions: true;
+  cycle: false;
+  disable-history: true;
+  case-sensitive: false;
+  display-drun: "";
+  click-to-exit: true;
+  show-match: true;
+}
