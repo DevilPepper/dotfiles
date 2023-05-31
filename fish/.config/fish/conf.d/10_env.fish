@@ -4,6 +4,7 @@ set -x FZF_DEFAULT_OPTS "--multi $FZF_BIND $FZF_PREVIEW"
 set -x FZF_DEFAULT_COMMAND "fd --strip-cwd-prefix --hidden --exclude .git"
 
 set -x GPG_TTY $(tty)
+set -x JIRA_PAGER cat
 set -x VIRTUAL_ENV_DISABLE_PROMPT true
 
 set -x HOSTNAME $HOSTNAME
