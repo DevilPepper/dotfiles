@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# https://chat.openai.com/share/9a7f804d-29f9-4219-90c0-c85ce1b07cd2
+
+remote_url=$(git config --get remote.upstream.url || git config --get remote.origin.url)
+if [[ -z "$remote_url" ]]; then
+  echo "$PWD is not a git repo!"
+  exit 1
+fi
+
+# Remove the ".git" suffix from the remote URL
+remote_url=$(echo "$remote_url" | sed 's/\.git$//')
+
+ticket=$(echo "${1:-$(git branch --show-current)}" | awk -F'/' '{print $NF}')
+
+
+if [[ $remote_url =~ "github.com" ]]; then
+  repo=$(echo "$remote_url" | awk -F'[:/]' '{print $(NF-1)"/"$NF}')
+
+  if command -v gh &> /dev/null; then
+    gh issue view "$ticket" --repo "$repo"
+  else
+    echo "Error: 'gh' command not found. Please install the GitHub CLI (https://cli.github.com/)"
+    exit 1
+  fi
+elif [[ $remote_url =~ "bitbucket.org" ]]; then
+  if command -v jira &> /dev/null; then
+    jira issue view "$ticket" --comments 0
+  else
+    echo "Error: 'jira' command not found. Please install the Jira CLI (https://github.com/ankitpokhrel/jira-cli)"
+    exit 1
+  fi
+else
+  echo "$remote_url: This host is not currently supported."
+  exit 1
+fi
