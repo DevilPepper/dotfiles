@@ -35,7 +35,7 @@ HISTSIZE=100000
 HISTFILESIZE=-1
 
 # in case you load bash with default settings, this prevents the history from being truncated
-HISTFILE=~/.my_history
+HISTFILE=~/.local/state/bash_history.sh
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
