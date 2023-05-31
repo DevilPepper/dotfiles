@@ -12,19 +12,23 @@ remote_url=$(echo "$remote_url" | sed 's/\.git$//')
 
 ticket=$(echo "${1:-$(git branch --show-current)}" | awk -F'/' '{print $NF}')
 
+cache=""
+if command -v bkt &> /dev/null; then
+  cache="bkt --ttl=28d --stale=1d --"
+fi
 
 if [[ $remote_url =~ "github.com" ]]; then
   repo=$(echo "$remote_url" | awk -F'[:/]' '{print $(NF-1)"/"$NF}')
 
   if command -v gh &> /dev/null; then
-    gh issue view "$ticket" --repo "$repo"
+    $cache gh issue view "$ticket" --repo "$repo"
   else
     echo "Error: 'gh' command not found. Please install the GitHub CLI (https://cli.github.com/)"
     exit 1
   fi
 elif [[ $remote_url =~ "bitbucket.org" ]]; then
   if command -v jira &> /dev/null; then
-    jira issue view "$ticket" --comments 0
+    $cache jira issue view "$ticket" --comments 0
   else
     echo "Error: 'jira' command not found. Please install the Jira CLI (https://github.com/ankitpokhrel/jira-cli)"
     exit 1
