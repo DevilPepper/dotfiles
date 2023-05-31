@@ -1,8 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ $# -ne 0 ]; then
 	source activate $1
 else
 	source deactivate
 fi
-
