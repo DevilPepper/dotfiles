@@ -2,6 +2,7 @@
 # in all projects. For more information about Stack's configuration, see
 # http://docs.haskellstack.org/en/stable/yaml_configuration/
 color: auto
+recommend-stack-upgrade: false
 ghc-options:
   "$everything": -j
 
