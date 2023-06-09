@@ -33,7 +33,7 @@
   fzb         = "!git_fzb() { git branch | sed 's/[ \\t\\*]*//' | fzf --preview=\"git_fzb_preview ${1-origin/HEAD} {}\"; }; git_fzb"
   fzc         = "!git_fzc() { git checkout $(git fzb $*); }; git_fzc"
   fzd         = "!git_fzd() { git diff --name-only $* | fzf --preview=\"git diff --color=always $* -- {}\"; }; git_fzd"
-  fzs         = "!git_fzs() { git stage $(git ls-files -dmo | fzf --preview=\"git_fzs_preview {}\"); }; git_fzs"
+  fzs         = "!git_fzs() { git stage $(git ls-files -dmo --exclude-standard | fzf --preview=\"git_fzs_preview {}\"); }; git_fzs"
 
   bb          = "!git_bb() { repo=$1; shift; git clone git@bitbucket.org:$repo.git $*; }; git_bb"
   gh          = "!git_gh() { repo=$1; shift; git clone git@github.com:$repo.git $*; }; git_gh"
