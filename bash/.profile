@@ -17,9 +17,15 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-source ~/.config/bash/env
-source ~/.config/bash/xdg
-source ~/.config/bash/alias
+for profile in ~/.config/bash/profile.d/*.sh
+do
+    if [ -e $profile ]; then
+      source $profile
+    fi
+done
+
 source ~/.config/bash/ssh > /dev/null 2>&1
+
+
 
 echo $(whoami)@$HOSTNAME
