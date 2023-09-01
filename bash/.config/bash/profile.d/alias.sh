@@ -7,3 +7,4 @@ alias comment='sed -i "s/^\"$1\"/#/" '
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias avscan='clamscan -ro'

@@ -7,3 +7,4 @@ alias comment='sed -i "s/^\"$1\"/#/" '
 alias gcd='git is-repo && cd $(git root)/$(fd --base-directory $(git root) --type d --hidden --exclude .git/ | fzf || echo) || cd $(ls -d ~/code/* | fzf)'
 
 alias qrcode='qrencode -t ansiutf8'
+alias avscan='clamscan -ro'
