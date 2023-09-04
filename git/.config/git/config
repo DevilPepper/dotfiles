@@ -43,6 +43,8 @@
   excludesfile = ~/.config/git/ignore
   filemode = true
   hooksPath = .githooks
+  autocrlf = false
+  eol = lf
 [fetch]
   prune = true
 [push]
