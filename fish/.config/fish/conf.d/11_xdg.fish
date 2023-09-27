@@ -14,6 +14,7 @@ set -x LESSHISTFILE $XDG_STATE_HOME/less/history
 set -x INPUTRC $XDG_CONFIG_HOME/readline/inputrc
 set -x N_PREFIX $XDG_DATA_HOME/n
 set -x PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
+set -x PYTHONPYCACHEPREFIX $XDG_CACHE_HOME/python
 set -x STACK_XDG true
 
 fish_add_path ~/.local/bin $N_PREFIX/bin

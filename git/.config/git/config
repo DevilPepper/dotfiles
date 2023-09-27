@@ -25,6 +25,8 @@
   trim        = ! git_diff_remote_local | xargs -r git branch -D
   lfx         = ! git lfs migrate import --no-rewrite --yes $(git diff --name-only) && git rebase -i
 
+  pycache     = ! echo "${XDG_CACHE:-$HOME/.cache}/python$(git cwd)"
+
   delete      = "!git_delete() { git branch -D $* && git push origin --delete $*; }; git_delete"
   description = "!git_describe() { git config branch.$1.description; }; git_describe"
   new         = "!git_new() { git checkout -b $1 && git push -u origin $1 || git checkout -; }; git_new"

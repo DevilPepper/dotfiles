@@ -15,6 +15,7 @@ export LESSHISTFILE=$XDG_STATE_HOME/less/history
 export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
 export N_PREFIX=$XDG_DATA_HOME/n
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/startup.py"
+export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
 export STACK_XDG=true
 
 PATH=$PATH:~/.local/bin
