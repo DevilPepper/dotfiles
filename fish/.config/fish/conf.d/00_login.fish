@@ -1,3 +1,3 @@
 if status is-login
-    echo "$(whoami)@$HOSTNAME"
+    echo "$(whoami)@$(hostname)"
 end
