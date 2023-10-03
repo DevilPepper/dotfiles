@@ -8,3 +8,7 @@ alias gcd='git is-repo && cd $(git root)/$(fd --base-directory $(git root) --typ
 
 alias qrcode='qrencode -t ansiutf8'
 alias avscan='clamscan -ro'
+
+if [ "$TERM" = "xterm-kitty" ]
+    alias ssh='TERM=xterm-256color command ssh'
+end
