@@ -9,6 +9,9 @@ rm -rf \
 	~/.gradle/ \
 	~/.inputrc \
 	~/.lesshst \
+	~/.node_repl_history \
+	~/.npm \
+	~/.npmrc \
 	~/.python_history \
 	~/.rbenv \
 	~/.rustup \

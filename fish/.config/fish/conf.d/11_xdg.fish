@@ -18,6 +18,8 @@ set -x GNUPGHOME $XDG_DATA_HOME/gnupg
 set -x INPUTRC $XDG_CONFIG_HOME/readline/inputrc
 set -x LESSHISTFILE $XDG_STATE_HOME/less/history
 set -x N_PREFIX $XDG_DATA_HOME/n
+set -x NODE_REPL_HISTORY $XDG_STATE_HOME/node_history.js
+set -x NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/.npmrc
 set -x PYTHONPYCACHEPREFIX $XDG_CACHE_HOME/python
 set -x PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
 set -x RBENV_ROOT $XDG_DATA_HOME/rbenv
