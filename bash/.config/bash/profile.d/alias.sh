@@ -10,4 +10,4 @@ alias grep='grep --color=auto'
 alias avscan='clamscan -ro'
 
 # kitty ssh fix
-[[ "$TERM" == "xterm-kitty" ]] && alias ssh='TERM=xterm-256color ssh'
+[[ "$TERM" == "xterm-kitty" ]] || [[ "$TERM" == "alacritty" ]] && alias ssh='TERM=xterm-256color ssh'
