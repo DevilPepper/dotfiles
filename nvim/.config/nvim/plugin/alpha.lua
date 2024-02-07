@@ -5,8 +5,8 @@ ascii = 'NeoVim'
 header_path = string.format('%s/.local/share/ascii/%s.txt', os.getenv('HOME'), ascii)
 dashboard.section.header.val = read_file(header_path)
 
-vim.cmd 'highlight BlueHLGroup ctermfg=blue guifg=blue'
-vim.cmd 'highlight GreenHLGroup ctermfg=green guifg=green'
+vim.cmd 'highlight BlueHLGroup ctermfg=blue guifg=#89B4FA'
+vim.cmd 'highlight GreenHLGroup ctermfg=green guifg=#A6E3A1'
 
 dashboard.section.header.opts.hl = {
 	{{ "BlueHLGroup", 0, 47 }, { "GreenHLGroup", 47, 99 }},
@@ -29,11 +29,11 @@ dashboard.section.buttons.val = {
 	dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 }
 
-autocmd("FileType", {
-  pattern = "alpha",
-  group = augroup("filegroup", { clear = true }),
-  command = "setlocal laststatus=0 noruler",
-})
+-- autocmd("FileType", {
+--   pattern = "alpha",
+--   group = augroup("filegroup", { clear = true }),
+--   command = "setlocal laststatus=0 noruler notermguicolors",
+-- })
 
 local nvim_version = vim.version()
 dashboard.section.footer.val = string.format(
@@ -46,3 +46,7 @@ dashboard.section.footer.val = string.format(
 )
 
 alpha.setup(dashboard.config)
+-- nofoldenable
+-- vim.cmd([[
+--     autocmd FileType alpha setlocal laststatus=0 noruler notermguicolors
+-- ]])

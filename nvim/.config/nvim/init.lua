@@ -11,10 +11,11 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.opt.number = true
-vim.cmd 'highlight LineNr ctermfg=black'
+vim.cmd 'highlight LineNr ctermfg=black guifg=#45475A'
 vim.opt.fillchars = {eob = " "}
 
 autocmd = vim.api.nvim_create_autocmd
 augroup = vim.api.nvim_create_augroup
 
 require('config.keymaps')
+require('config.theme')
