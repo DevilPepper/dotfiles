@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+command -v clamscan > /dev/null 2>&1 && clamscan --recursive --suppress-ok-results "$1"
+
+# $2 is destination, $PWD/archive_name/ by default. overwrite files in destination, but keep existing other files.
+echo "$1"
+# tar --xz -xf '%s'

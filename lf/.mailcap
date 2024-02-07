@@ -1,0 +1,12 @@
+text/*; nvim '%s'; needsterminal; print=bat --color=always '%s';
+application/x-sh; nvim '%s'; needsterminal; print=bat --color=always '%s';
+application/xml; nvim '%s'; needsterminal; print=bat --color=always '%s';
+application/json; nvim '%s'; needsterminal; print=bat --color=always '%s';
+image/*; print=echo '%t | %s'
+inode/directory; print=lsd -l '%s';
+application/x-tar; unarchive '%s'; print=tar -tf '%s';
+application/x-compressed-tar; unarchive '%s'; print=tar -tf '%s';
+application/x-bzip-compressed-tar; unarchive '%s'; print=tar -tf '%s';
+application/x-xz-compressed-tar; unarchive '%s'; print=tar -tf '%s';
+application/zip; unarchive '%s'; print=unzip -l '%s';
+*; print=echo '%t | %s'

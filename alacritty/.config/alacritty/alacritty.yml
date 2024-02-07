@@ -1,0 +1,70 @@
+# All imports must either be absolute paths starting with `/`, or paths relative
+# to the user's home directory starting with `~/`.
+import:
+ - ~/.config/alacritty/themes/Catppuccin_Mocha.yml
+
+window:
+  # Spread additional padding evenly around the terminal content.
+  #dynamic_padding: false
+
+  decorations: none
+  opacity: 0.85
+
+  #   - Windowed
+  #   - Maximized
+  #   - Fullscreen
+  startup_mode: Maximized
+  title: Alacritty
+  dynamic_title: true
+  decorations_theme_variant: None
+
+  # Mac
+  option_as_alt: OnlyLeft
+
+#scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  #history: 10000
+
+  # Scrolling distance multiplier.
+  #multiplier: 3
+
+# Font configuration
+font:
+  normal:
+    family: CaskaydiaCove Nerd Font Mono
+  size: 12.0
+
+draw_bold_text_with_bright_colors: false
+
+colors:
+  transparent_background_colors: false
+
+bell:
+  duration: 0
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  save_to_clipboard: false
+
+cursor:
+  style:
+    shape: Beam
+    blinking: Always
+
+  #vi_mode_style: None
+
+  blink_interval: 1000
+  blink_timeout: 0
+  unfocused_hollow: true
+
+  #thickness: 0.15
+
+live_config_reload: true
+
+shell:
+ program: /usr/bin/fish
+ args:
+   - --login
+
+working_directory: ~
