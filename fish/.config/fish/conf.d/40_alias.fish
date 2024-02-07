@@ -4,7 +4,9 @@ alias tmux-apocalypse='tmux ls | grep : | cut -d: -f1 | xargs -n 1 -r tmux kill-
 alias comment='sed -i "s/^\"$1\"/#/" '
 
 # git cd
-alias gcd='git is-repo && cd $(git root)/$(fd --base-directory $(git root) --type d --hidden --exclude .git/ | fzf || echo) || cd $(ls -d ~/code/* | fzf)'
+alias gcd='git is-repo && cd $(git root)/$(fd --base-directory $(git root) --type d --hidden --exclude .git/ | fzf || echo)'
+# change workspace
+alias cw='cd $(cw.sh)'
 
 alias qrcode='qrencode -t ansiutf8'
 alias avscan='clamscan -ro'

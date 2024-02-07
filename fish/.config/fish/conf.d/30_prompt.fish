@@ -1,5 +1,9 @@
 function starship_hr
-    set_color brblack
+    if test $status -ne 0
+        set_color red
+    else
+        set_color brblack
+    end
     echo -n $(printf %"$COLUMNS"s | tr " " "_")
     set_color normal
 end
