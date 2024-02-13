@@ -24,6 +24,7 @@ set -x PYTHONPYCACHEPREFIX $XDG_CACHE_HOME/python
 set -x PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
 set -x RBENV_ROOT $XDG_DATA_HOME/rbenv
 set -x RUSTUP_HOME $XDG_DATA_HOME/rustup
+set -x VAGRANT_HOME $XDG_DATA_HOME/vagrant
 set -x STACK_XDG true
 
 fish_add_path ~/.local/bin /usr/local/go/bin $CARGO_HOME/bin $N_PREFIX/bin

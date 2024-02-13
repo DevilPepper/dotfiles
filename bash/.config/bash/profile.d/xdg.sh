@@ -25,6 +25,7 @@ export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
 export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/startup.py
 export RBENV_ROOT=$XDG_DATA_HOME/rbenv
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
+export VAGRANT_HOME=$XDG_DATA_HOME/vagrant
 export STACK_XDG=true
 
 PATH=$PATH:~/.local/bin
