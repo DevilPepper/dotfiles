@@ -31,3 +31,12 @@ function Stow {
 cp "$dotfilesPath/Microsoft.PowerShell_profile.ps1" $profile -WhatIf:$WhatIf
 
 Stow -source "${dotfilesPath}/AppData" -destination "~/AppData"
+
+Get-ChildItem -Path "${dotfilesPath}/reg" | foreach {
+  $reg = $_.FullName
+  if ($WhatIf) {
+    echo "What if: reg import ${reg}"
+  } else {
+    reg import "${reg}"
+  }
+}

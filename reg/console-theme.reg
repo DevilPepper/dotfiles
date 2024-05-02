@@ -1,0 +1,49 @@
+Windows Registry Editor Version 5.00
+
+; Catppuccin Mocha
+; Note, hex values in the table are RGB but byte ordering of a DWORD is BGR
+
+;| PowerShell  | ColorTable |
+;|-------------|------------|
+;| Black       | 00         |
+;| DarkGray    | 08         |
+;| DarkGreen   | 02         |
+;| DarkYellow  | 06         |
+;| DarkBlue    | 01         |
+;| DarkCyan    | 03         |
+;| Gray        | 07         |
+;| White       | 15         |
+;| Yellow      | 14         |
+;| DarkRed     | 04         |
+;| Red         | 12         |
+;| Magenta     | 13         |
+;| DarkMagenta | 05         |
+;| Blue        | 09         |
+;| Cyan        | 11         |
+;| Green       | 10         |
+
+[HKEY_CURRENT_USER\Console]
+"ColorTable00"=dword:002e1e1e
+"ColorTable01"=dword:00fab489
+"ColorTable02"=dword:00a1e3a6
+"ColorTable03"=dword:00d5e294
+"ColorTable04"=dword:00a88bf3
+"ColorTable05"=dword:00e7c2f5
+"ColorTable06"=dword:00afe2f9
+"ColorTable07"=dword:00c8ada6
+"ColorTable08"=dword:00705b58
+"ColorTable09"=dword:00fab489
+"ColorTable10"=dword:00a1e3a6
+"ColorTable11"=dword:00d5e294
+"ColorTable12"=dword:00a88bf3
+"ColorTable13"=dword:00e7c2f5
+"ColorTable14"=dword:00afe2f9
+"ColorTable15"=dword:00dec2ba
+"ScreenColors"=dword:00000001
+"PopupColors"=dword:000000f6
+"FontFamily"=dword:00000036
+"FaceName"="Consolas"
+"FontSize"=dword:00100000
+"FullScreen"=dword:00000001
+"WindowAlpha"=dword:00000000
+"AllowAltF4Close"=dword:00000001
