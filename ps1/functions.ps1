@@ -36,3 +36,21 @@ function IsInteractive {
     $non_interactive = '-command', '-c', '-encodedcommand', '-e', '-ec', '-file', '-f', '-NonInteractive', '-noni'
     -not ([Environment]::GetCommandLineArgs() | Where-Object -FilterScript {$PSItem -in $non_interactive})
 }
+
+function Force-Resolve-Path {
+  param (
+    [string] $Path
+  )
+
+  try {
+    Resolve-Path -Path $Path -ErrorAction Stop
+  } catch [System.Management.Automation.ItemNotFoundException] {
+    if (Get-Member -InputObject  $_.Exception -Name "ItemName" -MemberType Properties) {
+      [PSCustomObject]@{
+          Path = $_.Exception.ItemName
+      } | Add-Member -MemberType ScriptMethod ToString { "{0}" -f $this.Path } -Force -PassThru
+    } else {
+      throw
+    }
+  }
+}

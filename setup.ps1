@@ -2,15 +2,19 @@ param(
     [switch]$WhatIf = $false
 )
 
-$dotfilesPath = "~/home/code/dotfiles"
+. "$PSScriptRoot\ps1\functions.ps1"
+
+$dotfilesPath = "$PSScriptRoot"
+$ogDotfilesPath = Force-Resolve-Path -Path "~/AppData/LocalLow/dotfiles"
+$xdgConfig = Force-Resolve-Path -Path "~/.config"
 
 function Stow {
     param(
         [string]$source,
         [string]$destination
     )
-    $src = Resolve-Path -Path $source
-    $dest = Resolve-Path -Path $destination
+    $src = Force-Resolve-Path -Path $source
+    $dest = Force-Resolve-Path -Path $destination
 
     Get-ChildItem -Path "${src}" -Recurse `
       | where { ! $_.PSIsContainer } `
@@ -30,7 +34,19 @@ function Stow {
 # There has to be a reason this isn't a symlink...
 cp "$dotfilesPath/Microsoft.PowerShell_profile.ps1" $profile -WhatIf:$WhatIf
 
-Stow -source "${dotfilesPath}/AppData" -destination "~/AppData"
+if (Test-Path -Path $ogDotfilesPath) {
+  if ($WhatIf) {
+    echo "What if: git -C $ogDotfilesPath pull"
+  } else {
+    git -C "$ogDotfilesPath" pull
+  }
+} else {
+  if ($WhatIf) {
+    echo "What if: git clone https://github.com/DevilPepper/dotfiles.git ${ogDotfilesPath}"
+  } else {
+    git clone https://github.com/DevilPepper/dotfiles.git "$ogDotfilesPath"
+  }
+}
 
 Get-ChildItem -Path "${dotfilesPath}/reg" | foreach {
   $reg = $_.FullName
@@ -40,3 +56,12 @@ Get-ChildItem -Path "${dotfilesPath}/reg" | foreach {
     reg import "${reg}"
   }
 }
+
+Stow -source "${dotfilesPath}/AppData" -destination "~/AppData"
+Stow -source "${dotfilesPath}/.config" -destination "$xdgConfig"
+
+Stow -source "${ogDotfilesPath}/git/.config" -destination "$xdgConfig"
+
+# Stupid defaults give us dirty worktree.
+# Pretty destructive workaround... Shouldn't be touching this directory anyway
+git -C "$ogDotfilesPath" restore .

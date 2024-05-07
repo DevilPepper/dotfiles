@@ -1,0 +1,12 @@
+[alias]
+  conflux = ! echo "Not yet implemented!"
+  trim    = ! echo "Not yet implemented!"
+  fzb     = ! echo "Not yet implemented!"
+  fzc     = ! echo "Not yet implemented!"
+  fzd     = ! echo "Not yet implemented!"
+  fzs     = ! echo "Not yet implemented!"
+
+[gpg]
+  program = "C:/Program Files (x86)/gnupg/bin/gpg.exe"
+[credential]
+  modalPrompt = false
