@@ -42,7 +42,7 @@
     "defaults": {
       "colorScheme": "Catppuccin Frappe",
       "font": {
-        "face": "Cascadia Code"
+        "face": "CaskaydiaCove NFM"
       },
       "opacity": 45,
       "useAcrylic": true,

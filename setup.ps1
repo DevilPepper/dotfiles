@@ -4,49 +4,91 @@ param(
 
 . "$PSScriptRoot\ps1\functions.ps1"
 
-$dotfilesPath = "$PSScriptRoot"
-$ogDotfilesPath = Force-Resolve-Path -Path "~/AppData/LocalLow/dotfiles"
 $xdgConfig = Force-Resolve-Path -Path "~/.config"
+$xdgData = Force-Resolve-Path -Path "~/.local/share"
+$winConfig = Force-Resolve-Path -Path "~/AppData/Local"
+
+$dotfilesPath = "$PSScriptRoot"
+$ogDotfilesPath = Force-Resolve-Path -Path "${winConfig}/dotfiles"
 
 function Stow {
-    param(
-        [string]$source,
-        [string]$destination
-    )
-    $src = Force-Resolve-Path -Path $source
-    $dest = Force-Resolve-Path -Path $destination
+  param(
+    [string]$source,
+    [string]$destination
+  )
+$src = Force-Resolve-Path -Path $source
+$dest = Force-Resolve-Path -Path $destination
 
-    Get-ChildItem -Path "${src}" -Recurse `
-      | where { ! $_.PSIsContainer } `
-      | foreach {
-        $relativePath = $_.Directory.FullName.Substring($src.Path.Length + 1)
-        $destinationDir = Join-Path -Path $dest -ChildPath $relativePath
-        $destinationFile = Join-Path -Path $destinationDir -ChildPath $_.Name
+Get-ChildItem -Path "${src}" -Recurse `
+  | where { ! $_.PSIsContainer } `
+  | foreach {
+    $relativePath = $_.Directory.FullName.Substring($src.Path.Length + 1)
+    $destinationDir = Join-Path -Path $dest -ChildPath $relativePath
+    $destinationFile = Join-Path -Path $destinationDir -ChildPath $_.Name
 
-        if (Test-Path -Path $destinationFile) {
-          Remove-Item -Force $destinationFile -WhatIf:$WhatIf
-        }
-        New-Item -ItemType "directory" -Path $destinationDir -Force > $null
-        New-Item -ItemType SymbolicLink -Target $_.FullName -Path $destinationFile -WhatIf:$WhatIf > $null
+    if (Test-Path -Path $destinationFile) {
+      Remove-Item -Force $destinationFile -WhatIf:$WhatIf
+    }
+    New-Item -ItemType "directory" -Path $destinationDir -Force > $null
+    New-Item -ItemType SymbolicLink -Target $_.FullName -Path $destinationFile -WhatIf:$WhatIf > $null
+  }
+}
+
+function Git-Clone {
+  param(
+    [string]$repo,
+    [string]$destination,
+    [switch]$recurse = $false
+  )
+  $dest = Force-Resolve-Path -Path $destination
+
+  if (Test-Path -Path $dest) {
+    if ($WhatIf) {
+      echo "What if: git -C ${dest} pull"
+      if ($recurse) {
+        echo "What if: git -C ${dest} submodule update --init --recursive"
       }
+    } else {
+      git -C "${dest}" pull
+      if ($recurse) {
+        git -C "${dest}" submodule update --init --recursive
+      }
+    }
+  } else {
+    if ($WhatIf) {
+      $flags = ""
+      if ($recurse) {
+        $flags = "--recurse-submodules -j8"
+      }
+      echo "What if: git clone ${flags} ${repo} ${dest}"
+    } else {
+      if ($recurse) {
+        git clone --recurse-submodules -j8 "${repo}" "${dest}"
+      } else {
+        git clone "${repo}" "${dest}"
+      }
+    }
+  }
+}
+
+function Git-Restore {
+  param(
+    [string]$destination,
+    [switch]$recurse = $false
+  )
+  $dest = Force-Resolve-Path -Path $destination
+  
+  git -C "${dest}" restore .
+  if ($recurse) {
+    git -C "${dest}" submodule foreach --recursive git restore .
+  }
 }
 
 # There has to be a reason this isn't a symlink...
 cp "$dotfilesPath/Microsoft.PowerShell_profile.ps1" $profile -WhatIf:$WhatIf
 
-if (Test-Path -Path $ogDotfilesPath) {
-  if ($WhatIf) {
-    echo "What if: git -C $ogDotfilesPath pull"
-  } else {
-    git -C "$ogDotfilesPath" pull
-  }
-} else {
-  if ($WhatIf) {
-    echo "What if: git clone https://github.com/DevilPepper/dotfiles.git ${ogDotfilesPath}"
-  } else {
-    git clone https://github.com/DevilPepper/dotfiles.git "$ogDotfilesPath"
-  }
-}
+Git-Clone -repo "https://github.com/DevilPepper/dotfiles.git" -destination "$ogDotfilesPath"
+Git-Clone -repo "https://github.com/DevilPepper/nvim-plugins.git" -destination "${winConfig}/nvim-data/site/pack" -recurse
 
 Get-ChildItem -Path "${dotfilesPath}/reg" | foreach {
   $reg = $_.FullName
@@ -58,10 +100,13 @@ Get-ChildItem -Path "${dotfilesPath}/reg" | foreach {
 }
 
 Stow -source "${dotfilesPath}/AppData" -destination "~/AppData"
-Stow -source "${dotfilesPath}/.config" -destination "$xdgConfig"
+Stow -source "${dotfilesPath}/.config" -destination "${xdgConfig}"
 
-Stow -source "${ogDotfilesPath}/git/.config" -destination "$xdgConfig"
+Stow -source "${ogDotfilesPath}/ascii/.local/share" -destination "${xdgData}"
+Stow -source "${ogDotfilesPath}/git/.config" -destination "${xdgConfig}"
+Stow -source "${ogDotfilesPath}/nvim/.config" -destination "${winConfig}"
 
 # Stupid defaults give us dirty worktree.
 # Pretty destructive workaround... Shouldn't be touching this directory anyway
-git -C "$ogDotfilesPath" restore .
+Git-Restore -destination "${ogDotfilesPath}"
+Git-Restore -destination "${winConfig}/nvim-data/site/pack" -recurse
