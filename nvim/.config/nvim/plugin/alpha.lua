@@ -2,7 +2,8 @@ local alpha = require('alpha')
 local dashboard = require('alpha.themes.dashboard')
 
 ascii = 'NeoVim'
-header_path = string.format('%s/.local/share/ascii/%s.txt', os.getenv('HOME'), ascii)
+local home_dir = os.getenv('HOME') or os.getenv('USERPROFILE')
+header_path = string.format('%s/.local/share/ascii/%s.txt', home_dir, ascii)
 dashboard.section.header.val = read_file(header_path)
 
 vim.cmd 'highlight BlueHLGroup ctermfg=blue guifg=#89B4FA'
@@ -20,12 +21,13 @@ dashboard.section.header.opts.hl = {
 	{{ "BlueHLGroup", 0, 55 }, { "GreenHLGroup", 55, 99 }},
 }
 
+local edit_config = string.format(':e %s<CR>', vim.fn.stdpath("config"))
 dashboard.section.buttons.val = {
 	dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
 	dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
 	dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
 	dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
-	dashboard.button("c", "  Configuration", ":e ~/.config/nvim/<CR>"),
+	dashboard.button("c", "  Configuration", edit_config),
 	dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 }
 
