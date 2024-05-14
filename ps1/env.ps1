@@ -26,6 +26,28 @@ Set-PSReadlineKeyHandler -Chord 'Shift+Tab' -Function MenuComplete
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
 Set-PSReadlineKeyHandler -Key 'ctrl+d' -Function ViExit
 
+Set-PSReadLineOption -Colors @{
+  Command="`e[93m"
+  Comment="`e[32m"
+  ContinuationPrompt="`e[97m"
+  Default="`e[97m"
+  Emphasis="`e[96m"
+  Error="`e[91m"
+  InlinePrediction="`e[97;2;3m"
+  Keyword="`e[92m"
+  ListPrediction="`e[33m"
+  ListPredictionSelected="`e[48;5;238m"
+  ListPredictionTooltip="`e[97;2;3m"
+  Member="`e[37m"
+  Number="`e[97m"
+  Operator="`e[90m"
+  Parameter="`e[90m"
+  Selection="`e[30;107m"
+  String="`e[36m"
+  Type="`e[37m"
+  Variable="`e[92m"
+}
+
 $PL = @{
   fire=[char]0xe0c0;
   lego=[char]0xe0ce;
