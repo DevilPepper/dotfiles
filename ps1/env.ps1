@@ -27,25 +27,25 @@ Set-PSReadlineKeyHandler -Key Tab -Function Complete
 Set-PSReadlineKeyHandler -Key 'ctrl+d' -Function ViExit
 
 Set-PSReadLineOption -Colors @{
-  Command="`e[93m"
-  Comment="`e[32m"
-  ContinuationPrompt="`e[97m"
-  Default="`e[97m"
-  Emphasis="`e[96m"
-  Error="`e[91m"
+  Command=[ConsoleColor]::Yellow
+  Comment=[ConsoleColor]::DarkGreen
+  ContinuationPrompt=[ConsoleColor]::White
+  Default=[ConsoleColor]::White
+  Emphasis=[ConsoleColor]::Cyan
+  Error=[ConsoleColor]::Red
   InlinePrediction="`e[97;2;3m"
-  Keyword="`e[92m"
-  ListPrediction="`e[33m"
+  Keyword=[ConsoleColor]::Green
+  ListPrediction=[ConsoleColor]::DarkYellow
   ListPredictionSelected="`e[48;5;238m"
   ListPredictionTooltip="`e[97;2;3m"
-  Member="`e[37m"
-  Number="`e[97m"
-  Operator="`e[90m"
-  Parameter="`e[90m"
+  Member=[ConsoleColor]::Gray
+  Number=[ConsoleColor]::White
+  Operator=[ConsoleColor]::DarkGray
+  Parameter=[ConsoleColor]::DarkGray
   Selection="`e[30;107m"
-  String="`e[36m"
-  Type="`e[37m"
-  Variable="`e[92m"
+  String=[ConsoleColor]::DarkCyan
+  Type=[ConsoleColor]::Gray
+  Variable=[ConsoleColor]::Green
 }
 
 $PL = @{
