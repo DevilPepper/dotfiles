@@ -27,22 +27,24 @@ Set-PSReadlineKeyHandler -Key Tab -Function Complete
 Set-PSReadlineKeyHandler -Key 'ctrl+d' -Function ViExit
 
 Set-PSReadLineOption -Colors @{
-  Command=[ConsoleColor]::Yellow
-  Comment=[ConsoleColor]::DarkGreen
+  Command=[ConsoleColor]::Blue
+  Comment="`e[32;3m"
   ContinuationPrompt=[ConsoleColor]::White
   Default=[ConsoleColor]::White
-  Emphasis=[ConsoleColor]::Cyan
+  Emphasis="`e[96;1m"
   Error=[ConsoleColor]::Red
-  InlinePrediction="`e[97;2;3m"
+  InlinePrediction="`e[97;3m"
   Keyword=[ConsoleColor]::Green
   ListPrediction=[ConsoleColor]::DarkYellow
+  # https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
   ListPredictionSelected="`e[48;5;238m"
-  ListPredictionTooltip="`e[97;2;3m"
+  # https://devblogs.microsoft.com/powershell/psreadline-2-3-1-beta1-release/
+  ListPredictionTooltip="`e[97;3m"
   Member=[ConsoleColor]::Gray
   Number=[ConsoleColor]::White
-  Operator=[ConsoleColor]::DarkGray
-  Parameter=[ConsoleColor]::DarkGray
-  Selection="`e[30;107m"
+  Operator=[ConsoleColor]::Yellow
+  Parameter=[ConsoleColor]::Yellow
+  Selection="`e[30;1;4;104m"
   String=[ConsoleColor]::DarkCyan
   Type=[ConsoleColor]::Gray
   Variable=[ConsoleColor]::Green

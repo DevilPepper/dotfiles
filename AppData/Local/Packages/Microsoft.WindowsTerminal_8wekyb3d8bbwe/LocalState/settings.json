@@ -42,7 +42,11 @@
     "defaults": {
       "colorScheme": "Catppuccin Frappe",
       "font": {
-        "face": "CaskaydiaCove NFM"
+        "face": "CaskaydiaCove NFM",
+        "features": {
+          "calt": 1,
+          "ss01": 1
+        }
       },
       "opacity": 45,
       "useAcrylic": true,
