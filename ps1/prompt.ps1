@@ -1,10 +1,13 @@
-function prompt {
-	if($env:supports_powerline -eq $True) {
-		Write-Host "$($PL.digitize) " -NoNewLine -ForegroundColor DarkBlue
-	} else {
-	  Write-Host "✗" -NoNewLine -ForegroundColor DarkGreen
-	}
-	Write-Host `a -NoNewLine -ForegroundColor White
+function Invoke-Starship-PreCommand {
+  $fg = "Black"
+  # Doesn't work
+  if (!$?) {
+    $fg = "Red"
+  }
 
-	return " "
+  $hr = "_" * $Host.UI.RawUI.WindowSize.Width
+  Write-Host "$hr" -NoNewLine -ForegroundColor $fg
+	Write-Host `a -NoNewLine -ForegroundColor White
 }
+
+Invoke-Expression (&starship init powershell)

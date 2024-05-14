@@ -31,6 +31,7 @@ function main {
   Stow -source "${ogDotfilesPath}/ascii/.local/share" -destination "${xdgData}"
   Stow -source "${ogDotfilesPath}/git/.config" -destination "${xdgConfig}"
   Stow -source "${ogDotfilesPath}/nvim/.config" -destination "${winConfig}"
+  Stow -source "${ogDotfilesPath}/starship/.config" -destination "${xdgConfig}"
 
   # Stupid defaults give us dirty worktree.
   # Pretty destructive workaround... Shouldn't be touching this directory anyway
@@ -49,7 +50,10 @@ $dest = Force-Resolve-Path -Path $destination
 Get-ChildItem -Path "${src}" -Recurse `
   | where { ! $_.PSIsContainer } `
   | foreach {
-    $relativePath = $_.Directory.FullName.Substring($src.Path.Length + 1)
+    $relativePath = $null
+    if ($_.Directory.FullName.Length -ne $src.Path.Length) {
+      $relativePath = $_.Directory.FullName.Substring($src.Path.Length + 1)
+    }
     $destinationDir = Join-Path -Path $dest -ChildPath $relativePath
     $destinationFile = Join-Path -Path $destinationDir -ChildPath $_.Name
 
