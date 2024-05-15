@@ -23,7 +23,7 @@ function main {
   Git-Clone -repo "https://github.com/DevilPepper/dotfiles.git" -destination "$ogDotfilesPath"
   Git-Clone -repo "https://github.com/DevilPepper/nvim-plugins.git" -destination "${winConfig}/nvim-data/site/pack" -recurse
 
-  Get-ChildItem -Path "${dotfilesPath}/reg" | foreach { Reg-Edit -reg $_.FullName }
+  Get-ChildItem -Path "${dotfilesPath}/reg" | where { ! $_.PSIsContainer } | foreach { Reg-Edit -reg $_.FullName }
 
   Stow -source "${dotfilesPath}/AppData" -destination "~/AppData"
   Stow -source "${dotfilesPath}/.config" -destination "${xdgConfig}"
