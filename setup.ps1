@@ -29,6 +29,7 @@ function main {
   Stow -source "${dotfilesPath}/.config" -destination "${xdgConfig}"
 
   Stow -source "${ogDotfilesPath}/ascii/.local/share" -destination "${xdgData}"
+  Stow -source "${ogDotfilesPath}/darktable/.config" -destination "${winConfig}"
   Stow -source "${ogDotfilesPath}/git/.config" -destination "${xdgConfig}"
   Stow -source "${ogDotfilesPath}/nvim/.config" -destination "${winConfig}"
   Stow -source "${ogDotfilesPath}/starship/.config" -destination "${xdgConfig}"
