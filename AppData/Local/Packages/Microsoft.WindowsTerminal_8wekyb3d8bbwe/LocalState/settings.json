@@ -49,8 +49,7 @@
         }
       },
       "opacity": 45,
-      "useAcrylic": true,
-      "bellStyle": "taskbar"
+      "useAcrylic": true
     },
     "list": [
       {
