@@ -6,7 +6,7 @@ function Invoke-Starship-PreCommand {
   }
 
   $hr = "_" * $Host.UI.RawUI.WindowSize.Width
-  Write-Host "$hr" -NoNewLine -ForegroundColor $fg
+  Write-Host "$hr" -ForegroundColor $fg
 	Write-Host `a -NoNewLine -ForegroundColor White
 }
 
