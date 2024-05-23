@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+sock_id="lf_$(date +%s%3N)"
+command -v ub-start > /dev/null 2>&1 && ub-start "$sock_id" > /dev/null
+command -v ub-lookup > /dev/null 2>&1 && export ub_socket=$(ub-lookup "$sock_id")
+lf "$@"
+command -v ub-stop > /dev/null 2>&1 && ub-stop "$sock_id"

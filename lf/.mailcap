@@ -2,7 +2,7 @@ text/*; nvim '%s'; needsterminal; print=bat --color=always '%s';
 application/x-sh; nvim '%s'; needsterminal; print=bat --color=always '%s';
 application/xml; nvim '%s'; needsterminal; print=bat --color=always '%s';
 application/json; nvim '%s'; needsterminal; print=bat --color=always '%s';
-image/*; print=echo '%t | %s'
+image/*; print=image-print 'mailcap' '%t' '%s'
 inode/directory; print=lsd -l '%s';
 application/x-tar; unarchive '%s'; print=tar -tf '%s';
 application/x-compressed-tar; unarchive '%s'; print=tar -tf '%s';

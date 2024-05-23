@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+
+tmp_dir="/tmp/${USER:-nobody}/image-print"
+max_width_px=3840
+max_height_px=2400
+
+if [ "$#" -lt 3 ]; then
+  echo "Usage: $0 <ub_id> <mime_type> <img_file> [X] [Y] [max_width] [max_height]"
+  exit 1
+elif [ -z "$ub_socket" ]; then
+    echo "ub_socket not set to ueberzugpp socket"
+    exit 1
+elif ! command -v ueberzugpp > /dev/null 2>&1; then
+    echo "ueberzugpp not installed"
+    exit 1
+elif ! command -v exiftool > /dev/null 2>&1; then
+  echo "exiftool not installed"
+  exit 1
+fi
+
+mkdir -p "$tmp_dir"
+
+ub_id="$1"
+mime_type="$2"
+img_file="$3"
+
+X=${4:-0}
+Y=${5:-0}
+max_width=${6:-60}
+max_height=${7:-40}
+
+image_name=$(basename "$img_file")
+ext=$(echo "${image_name##*.}" | tr [:upper:] [:lower:])
+image_name="${image_name%.*}"
+checksum=$(echo "$filename" | cksum | cut -d' ' -f1)
+
+preview_name="${tmp_dir}/${image_name}-${checksum}.jpg"
+
+metadata=$(exiftool \
+  -ImageSize \
+  -Megapixels \
+  -BitDepth \
+  -FileSize \
+  -Aperture \
+  -ExposureTime \
+  -ISO \
+  -FOV \
+  -FocalLength \
+  -FocusMode \
+  -Flash \
+  -WhiteBalance \
+  -Copyright \
+  -Make \
+  -Model \
+  -SubSecDateTimeOriginal \
+  -FileModifyDate \
+  "$img_file"
+)
+# count the lines in the meta data file + some padding
+metadata_height=$(($(echo "$metadata" | wc --lines) + 2))
+# adjust max_height to allow room for metadata
+max_height=$(($max_height - $metadata_height))
+# print empty lines until below new max_height and print the metadata
+printf '\n%.0s' $(seq 0 $max_height)
+echo "$metadata"
+
+dimensions=$(exiftool -s -ImageWidth -ImageHeight "$img_file")
+
+width=$(echo "$dimensions" | grep -i "ImageWidth" | cut -d':' -f2 | tr -d ' ')
+height=$(echo "$dimensions" | grep -i "ImageHeight" | cut -d':' -f2 | tr -d ' ')
+
+if [ "$ext" = "arw" ]; then
+  if [ ! -e "$preview_name" ]; then
+    exiftool -b -PreviewImage "$img_file" > "$preview_name"
+  fi
+  img_file="$preview_name"
+elif [ "$width" -gt "$max_width_px" ] || [ "$height" -gt "$max_height_px" ]; then
+  # looks like ueberzugpp can't handle huge images, so we need to resize them for preview...
+  if [ ! -e "$preview_name" ]; then
+    if ! command -v magick > /dev/null 2>&1; then
+      echo "imagemagick is required to resize images"
+      exit 1
+    fi
+    magick convert "$img_file" -resize "${max_width_px}x${max_height_px}" -quality 85% "$preview_name"
+  fi
+  img_file="$preview_name"
+fi
+
+ueberzugpp cmd --socket $ub_socket --identifier "$ub_id" --action remove
+ueberzugpp cmd \
+    --socket $ub_socket \
+    --identifier "$ub_id" \
+    --action add \
+    --file "$img_file" \
+    -x "$X" \
+    -y "$Y" \
+    --max-width "$max_width" \
+    --max-height "$max_height"
