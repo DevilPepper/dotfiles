@@ -9,7 +9,7 @@ history = os.path.join(
         os.environ.get('XDG_STATE_HOME') or
         os.path.expanduser('~/.local/state')
     ),
-    'python_history.py'
+    'history.py'
 )
 
 try:
