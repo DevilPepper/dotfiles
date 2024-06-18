@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+code_dir=~/code
+
 main() {
     if [ $# -eq 0 ]; then
         DESTINATION=~
@@ -14,14 +16,30 @@ main() {
         buildTree ${dir%/}
     done
 
-    # clone plugins if we have vim
-    if [ ! -z $(which vim) ]; then
-      vim_data=~/.local/share/vim
-      mkdir -p $vim_data
-      rm -rf $vim_data/pack
-      git clone --recurse-submodules https://github.com/DevilPepper/vim-plugins.git $vim_data/pack
-      vim -s <(echo ":helptags ALL" && echo ":q")
-    fi
+    # # clone plugins if we have nvim
+    # if [ ! -z $(which nvim) ]; then
+    #   data_dir=~/.local/share/nvim/site
+    #   repo_dir=$code_dir/nvim-plugins
+
+    #   mkdir -p $data_dir
+    #   rm -rf $repo_dir
+
+    #   git clone --recurse-submodules https://github.com/DevilPepper/nvim-plugins.git $repo_dir
+    #   ln -sf $repo_dir $data_dir/pack
+    #   # vim -s <(echo ":helptags ALL" && echo ":q")
+    # fi
+
+    # # clone plugins if we have zsh
+    # if [ ! -z $(which nvim) ]; then
+    #   data_dir=~/.local/share/zsh
+    #   repo_dir=$code_dir/zsh-plugins
+
+    #   mkdir -p $data_dir
+    #   rm -rf $repo_dir
+
+    #   git clone --recurse-submodules https://github.com/DevilPepper/zsh-plugins.git $repo_dir
+    #   ln -sf $repo_dir $data_dir/plugins
+    # fi
 }
 
 function buildTree {

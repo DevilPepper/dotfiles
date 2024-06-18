@@ -14,8 +14,6 @@ if [ -f "$TZ_FILE" ]; then
   export TZ=$(cat $TZ_FILE)
 fi
 
-export HOSTNAME
-
 # for d in /opt/*/bin; do PATH="$PATH:$d"; done
 
 # PATH=$PATH:/opt/google/chrome/driver/
@@ -25,11 +23,7 @@ export HOSTNAME
 # LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/i386-gnu
 # LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/i386-linux-gnu
 
-export PATH
 # export QUARTUS_64BIT=1
 # export LD_LIBRARY_PATH
 # export public=/media/sf_Public
 # export BROWSER="google-chrome"
-export GPG_TTY=$(tty)
-export JIRA_PAGER=bat
-export VIRTUAL_ENV_DISABLE_PROMPT=true

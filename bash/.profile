@@ -17,6 +17,13 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+for conf in ~/.config/bash/conf.d/*.sh
+do
+    if [ -e $conf ]; then
+      source $conf
+    fi
+done
+
 for profile in ~/.config/bash/profile.d/*.sh
 do
     if [ -e $profile ]; then

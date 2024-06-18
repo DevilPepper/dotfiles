@@ -1,4 +1,3 @@
-#!/bin/bash
 XDG_CACHE_HOME=~/.cache
 XDG_CONFIG_HOME=~/.config
 XDG_DATA_HOME=~/.local/share

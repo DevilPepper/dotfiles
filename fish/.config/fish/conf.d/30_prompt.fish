@@ -4,7 +4,7 @@ function starship_hr
     else
         set_color brblack
     end
-    echo -n $(printf %"$COLUMNS"s | tr " " "_")
+    echo $(printf %"$COLUMNS"s | tr " " "_")
     set_color normal
 end
 
