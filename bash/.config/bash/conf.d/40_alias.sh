@@ -14,4 +14,6 @@ alias avscan='clamscan -ro'
 alias ls='ls --color=auto'
 # alias grep='grep --color=auto'
 
+alias r='R --quiet --no-restore-data --no-save'
+
 [[ "$TERM" == "xterm-kitty" ]] || [[ "$TERM" == "alacritty" ]] && alias ssh='TERM=xterm-256color ssh'
