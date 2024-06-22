@@ -11,5 +11,11 @@ setopt HIST_FIND_NO_DUPS
 # Not needed since dups are excluded from history and session close deletes dups
 # setopt HIST_IGNORE_ALL_DUPS
 
-bindkey "\e[A" history-beginning-search-backward
-bindkey "\e[B" history-beginning-search-forward
+bindkey '\e[A' history-beginning-search-backward
+bindkey '\e[B' history-beginning-search-forward
+
+# autoload -U history-search-end
+# zle -N history-beginning-search-backward-end history-search-end
+# zle -N history-beginning-search-forward-end history-search-end
+# bindkey '\e[A' history-beginning-search-backward-end
+# bindkey '\e[B' history-beginning-search-forward-end
