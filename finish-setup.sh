@@ -65,7 +65,12 @@ function symlink_repos() {
     if $(array_contains_string "nvim-plugins" "${repos[@]}"); then
         symlink_repo "DevilPepper/nvim-plugins" ~/.local/share/nvim/site/pack "${use_ssh}"
         if [ ! -z $(which nvim) ]; then
-            nvim -s <(echo ":helptags ALL" && echo ":q")
+            if [[ "$(uname)" == "Darwin" ]]; then
+                # Mac version explodes and idgaf
+                echo 'Run `:helptags ALL` in nvim if you want them'
+            else
+                nvim -s <(echo ":helptags ALL" && echo ":q")
+            fi
         else
             echo "Didn't generate helptags because nvim is not installed" 1>&2
         fi
