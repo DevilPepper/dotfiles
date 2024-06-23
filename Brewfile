@@ -39,10 +39,11 @@ brew "tree"
 brew "unzip"
 brew "zsh"
 
-cask "font-caskaydia-cove-nerd-font"
-cask "font-noto-color-emoji"
-cask "font-noto-emoji"
-cask "font-noto-sans-cjk"
+# Fonts
+brew "font-caskaydia-cove-nerd-font"
+brew "font-noto-color-emoji"
+brew "font-noto-emoji"
+brew "font-noto-sans-cjk"
 
 cask "amethyst"
 cask "hiddenbar"
