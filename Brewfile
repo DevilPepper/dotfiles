@@ -1,6 +1,6 @@
-tap "homebrew/core"
+# tap "homebrew/core"
 tap "homebrew/bundle"
-tap "homebrew/cask"
+# tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 
 tap "ankitpokhrel/jira-cli"
@@ -9,7 +9,8 @@ brew "bash-completion"
 brew "bat"
 brew "bkt"
 brew "ca-certificates"
-brew "curl"
+# Homebrew won't symlink curl bc Mac already has it and symlinking may cause problems
+# brew "curl"
 brew "fd"
 brew "fzf"
 brew "gh"

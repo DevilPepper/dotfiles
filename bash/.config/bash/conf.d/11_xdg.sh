@@ -20,6 +20,7 @@ export LESSHISTFILE=$XDG_STATE_HOME/less/history
 export N_PREFIX=$XDG_DATA_HOME/n
 export NODE_REPL_HISTORY=$XDG_STATE_HOME/history.js
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/.npmrc
+export PYENV_ROOT=$XDG_DATA_HOME/pyenv
 export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
 export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/startup.py
 export RBENV_ROOT=$XDG_DATA_HOME/rbenv
@@ -30,10 +31,10 @@ export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export VAGRANT_HOME=$XDG_DATA_HOME/vagrant
 export STACK_XDG=true
 
-PATH=$PATH:~/.local/bin
 PATH=$PATH:/usr/local/go/bin
 PATH=$PATH:$CARGO_HOME/bin
 PATH=$PATH:$N_PREFIX/bin
+PATH=$PATH:$PYENV_ROOT/shims
 
 export PATH
 
