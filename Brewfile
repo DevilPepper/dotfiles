@@ -1,7 +1,6 @@
 # tap "homebrew/core"
 tap "homebrew/bundle"
 # tap "homebrew/cask"
-tap "homebrew/cask-fonts"
 
 tap "ankitpokhrel/jira-cli"
 
@@ -39,11 +38,10 @@ brew "tree"
 brew "unzip"
 brew "zsh"
 
-# Fonts
-brew "font-caskaydia-cove-nerd-font"
-brew "font-noto-color-emoji"
-brew "font-noto-emoji"
-brew "font-noto-sans-cjk"
+cask "font-caskaydia-cove-nerd-font"
+cask "font-noto-color-emoji"
+cask "font-noto-emoji"
+cask "font-noto-sans-cjk"
 
 cask "amethyst"
 cask "hiddenbar"
