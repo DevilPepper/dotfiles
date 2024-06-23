@@ -6,20 +6,29 @@ zsh_completions_path=~/.local/share/zsh/completions
 bash_completions_path=~/.local/share/bash-completion/completions
 
 function main() {
-    repos=($(gum choose "nvim-plugins" "zsh-plugins" --header "What repos do you want to fetch?" --no-limit))
+    repos=( \
+        "nvim-plugins" \
+        "zsh-plugins" \
+    )
+    repos=($(gum choose "${repos[@]}" --header "What repos do you want to fetch?" --no-limit))
 
     use_ssh=false
     if [[ ${#repos[@]} -ne 0 ]]; then
         gum confirm "Use ssh?" && use_ssh=true || use_ssh=false
     fi
 
-    completions=($(gum choose "git" "gcloud" --header "What completions do you need?" --no-limit))
+    completions=( \
+        "git" \
+        "gcloud" \
+    )
+    completions=($(gum choose "${completions[@]}" --header "What completions do you need?" --no-limit))
 
     # spinner "Cloning repos..." symlink_repos "${use_ssh}" "${repos[@]}"
     # spinner "Setting up completions..." get_completions "${completions[@]}"
 
     symlink_repos "${use_ssh}" "${repos[@]}"
     get_completions "${completions[@]}"
+    mac_stuff
 }
 
 function get_completions() {
@@ -96,6 +105,13 @@ function array_contains_string() {
     done
 
     echo $found
+}
+
+function mac_stuff() {
+    if [[ "$(uname)" == "Darwin" ]]; then
+        # TODO: symlink Amethyst layout and config
+        brew completions link
+    fi
 }
 
 # function spinner() {

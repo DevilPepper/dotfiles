@@ -1,5 +1,9 @@
 # Copied from https://raw.githubusercontent.com/Phantas0s/.dotfiles/master/zsh/completion.zsh
 
+if type brew &>/dev/null
+then
+  fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+fi
 fpath=(~/.local/share/zsh/completions $fpath)
 
 # zmodload zsh/complist
@@ -8,7 +12,7 @@ fpath=(~/.local/share/zsh/completions $fpath)
 # bindkey -M menuselect 'j' vi-down-line-or-history
 # bindkey -M menuselect 'l' vi-forward-char
 
-autoload -U compinit; compinit
+autoload -Uz compinit; compinit
 _comp_options+=(globdots)
 
 # setopt GLOB_COMPLETE
