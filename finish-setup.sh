@@ -86,6 +86,7 @@ function symlink_repo() {
 
     mkdir -p $link_parent
     rm -rf $repo_path
+    rm -f $link_path
 
     git clone --recurse-submodules $repo_url $repo_path
     ln -sf $repo_path $link_path
