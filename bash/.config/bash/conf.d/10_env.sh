@@ -1,5 +1,8 @@
 export GPG_TTY=$(tty)
 export OPENER=run-mailcap
+export PAGER=bat
+export EDITOR=nvim
+export VISUAL=nvim
 
 export JIRA_PAGER=bat
 export VIRTUAL_ENV_DISABLE_PROMPT=true
