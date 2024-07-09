@@ -1,0 +1,9 @@
+---
+api:
+  model: gpt-4
+  history: 5
+  deploy_name: rad-bavarois-8b2ee0
+headings:
+  assistant: 📎
+  system: 🛸
+  user: 👤
