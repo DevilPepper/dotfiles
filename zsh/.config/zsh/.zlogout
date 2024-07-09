@@ -1,2 +1,2 @@
 # clear
-deactivate || true
+typeset -f deactivate > /dev/null && deactivate
