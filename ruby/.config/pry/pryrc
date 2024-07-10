@@ -12,6 +12,6 @@ Pry.config.prompt = Pry::Prompt.new(
     "my custom prompt",
     [
         proc { "\001\e[31m\002\001\e[0m\002 " },
-        proc { "\001\e[31m\002\001\e[0m\002   " },
+        proc { "├   " },
     ],
 )

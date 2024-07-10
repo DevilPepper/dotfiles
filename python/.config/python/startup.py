@@ -2,7 +2,11 @@
 import os
 import atexit
 import readline
+import sys
 from datetime import datetime
+
+sys.ps1 = "\001\033[32m\002\001\033[0m\002 "
+sys.ps2 = "├   "
 
 history = os.path.join(
     (
