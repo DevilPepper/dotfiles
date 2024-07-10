@@ -1,0 +1,17 @@
+xdg_state = ENV['XDG_STATE_HOME']
+if xdg_state.nil? || xdg_state.strip().empty?
+    xdg_state = File.expand_path("~/.local/state")
+end
+
+Pry.config.history_file = "#{xdg_state}/history.rb"
+Pry.config.history_load = true
+Pry.config.history_save = true
+
+Pry.config.prompt = Pry::Prompt.new(
+    "custom",
+    "my custom prompt",
+    [
+        proc { "\001\e[31m\002\001\e[0m\002 " },
+        proc { "\001\e[31m\002\001\e[0m\002   " },
+    ],
+)

@@ -16,4 +16,9 @@ alias ls='ls --color=auto'
 
 alias r='R --quiet --no-restore-data --no-save'
 
+alias rb-link='\
+    { rb_gem_path=$(gem environment gempath | tr ":" "\n" | grep ~/.local/share/gem/ruby) } \
+    && ln -sf $(echo -e "$rb_gem_path" | head -n 1) ~/.local/share/gem/ruby/current \
+'
+
 [[ "$TERM" == "xterm-kitty" ]] || [[ "$TERM" == "alacritty" ]] && alias ssh='TERM=xterm-256color ssh'
