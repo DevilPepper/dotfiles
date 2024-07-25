@@ -1,6 +1,7 @@
 # for cmd in choose confirm file filter format input join pager spin style table write log; do gum $cmd --help; done
 
 export GUM_FORMAT_THEME=~/.config/glow/Catppuccin.json
+export GLAMOUR_STYLE=~/.config/glow/Catppuccin.json
 
 # choose
 export GUM_CHOOSE_CURSOR_FOREGROUND=3
