@@ -4,9 +4,17 @@
 function view_git_issue() {
   local ticket="$1"
   local repo="$2"
-  GH_FORCE_TTY=66% gh issue view "$ticket" --repo "$repo" 2> /dev/null || jira issue view "$ticket" --comments 0 | gum format
+  GH_FORCE_TTY=66% gh issue view "$ticket" --repo "$repo" 2> /dev/null || jira issue view "$ticket" --comments 0 --plain | fix_jira_output
 }
 export -f view_git_issue
+
+function fix_jira_output() {
+  sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g" \
+  | sed -E "s/----* (.*) ----*/---\n## \1/g" \
+  | sed -E "s/View this issue on Jira: (.*)/---\n> _View this issue on Jira:_ \1/g" \
+  | gum format
+}
+export -f fix_jira_output
 
 remote_url=$(git config --get remote.upstream.url || git config --get remote.origin.url)
 if [[ -z "$remote_url" ]]; then
