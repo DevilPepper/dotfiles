@@ -7,6 +7,7 @@ tap "ankitpokhrel/jira-cli"
 brew "bash"
 brew "bash-completion"
 brew "bat"
+brew "bitwarden-cli"
 brew "bkt"
 brew "ca-certificates"
 # Homebrew won't symlink curl bc Mac already has it and symlinking may cause problems

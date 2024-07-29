@@ -1,0 +1,5 @@
+[Unit]
+Description=Run bw-expire
+
+[Service]
+ExecStart=bash %h/.local/bin/bw-expire.sh

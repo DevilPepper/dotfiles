@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+tmp_dir="/tmp/${USER:-nobody}/bw"
+session_file="$tmp_dir/session.gpg"
+
+function get_session_key() {
+    if [[ ! -f "$session_file" ]]; then
+        BW_SESSION=""
+    else
+        BW_SESSION=$(gpg --decrypt --quiet "$session_file")
+    fi
+
+    export BW_SESSION
+}
+
+get_session_key
+bw unlock --check --quiet || {
+    BW_SESSION=$(FORCE_COLOR=1 bw unlock --raw)
+    mkdir -p "$tmp_dir"
+
+    echo "$BW_SESSION" \
+    | gpg --encrypt \
+          --quiet \
+          --recipient $(git config --get user.signingkey) \
+          -o "$session_file"
+
+    get_session_key
+}
+
+bw "$@"
