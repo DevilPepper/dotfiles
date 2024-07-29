@@ -28,7 +28,9 @@ function main() {
 
     symlink_repos "${use_ssh}" "${repos[@]}"
     get_completions "${completions[@]}"
+    linux_stuff
     mac_stuff
+    purge_dead_links
 }
 
 function get_completions() {
@@ -113,10 +115,48 @@ function array_contains_string() {
     echo $found
 }
 
+function purge_dead_links() {
+    find ~/.config ~/.local -type l | while read -r symlink; do
+        if [ ! -e "$symlink" ]; then
+            echo "Removing deadlink: $symlink"
+            rm "$symlink"
+        fi
+    done
+}
+
+function linux_stuff() {
+    if [[ "$(uname)" == "Linux" ]]; then
+        find ~/.config/systemd/user -mindepth 2 -type l | while read -r symlink; do
+            if [ ! -e "$symlink" ]; then
+                unit_name=$(basename "$symlink")
+                echo "Disabling broken unit: $unit_name"
+                systemctl --user disable "$unit_name"
+                rm -rf "$symlink"
+            fi
+        done
+
+        systemctl --user daemon-reload
+        systemctl --user list-unit-files --state=enabled | grep enabled | awk '{print $1}' | while read -r unit; do
+            if [ -f "$HOME/.config/systemd/user/$unit" ]; then
+                systemctl --user restart "$unit"
+            fi
+        done
+    fi
+}
+
 function mac_stuff() {
     if [[ "$(uname)" == "Darwin" ]]; then
         # TODO: symlink Amethyst layout and config
         brew completions link
+        find ~/Library/LaunchAgents -type l -name 'dev.dotfiles.*.plist' | while read -r symlink; do
+            if [ ! -e "$symlink" ]; then
+                echo "Removing dead link: $symlink"
+                rm "$symlink"
+            else
+                launchctl bootout gui/$(id -u) "$symlink" 2> /dev/null || true
+                launchctl bootstrap gui/$(id -u) "$symlink"
+            fi
+        done
     fi
 }
 

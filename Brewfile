@@ -4,6 +4,7 @@ tap "homebrew/bundle"
 
 tap "ankitpokhrel/jira-cli"
 
+brew "bash"
 brew "bash-completion"
 brew "bat"
 brew "bkt"
