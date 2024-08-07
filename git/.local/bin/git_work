@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+trap '[[ $? -eq 130 ]] && kill -INT $$' CHLD
+
+selected_ticket=$( \
+  jira issue list \
+    --status='~Closed' \
+    --status='~Done' \
+    --assignee "$(git config --get user.email | tr '[:upper:]' '[:lower:]')" \
+    --plain \
+    --no-headers \
+    --columns="KEY,SUMMARY" \
+  | fzf --preview="bash -c 'git_issue {}'" \
+)
+
+if [[ -z "$selected_ticket" ]]; then
+  exit 1
+fi
+
+ticket=$(echo "$selected_ticket" | awk '{print $1}')
+server=$(awk '/server:/ {print $2}' ~/.config/.jira/.config.yml)
+email=$(git config --get user.email | tr '[:upper:]' '[:lower:]')
+
+epic=$( \
+  curl --request GET \
+       --url "${server}/rest/api/3/issue/${ticket}" \
+       --user "${email}:$(keyring get jira-cli ${email})" \
+       --header 'Accept: application/json' \
+       --silent \
+  | jq '.fields.parent.fields.summary // empty' --raw-output \
+  | tr -d '[:space:]' \
+)
+
+username=$(git config --get user.name)
+description=$(gum input --placeholder "Enter a description")
+
+echo "${username}/${epic}/${description}/${ticket}" | sed -E 's|//+|/|g'
