@@ -25,6 +25,7 @@ brew "less"
 brew "lf"
 brew "libfido2"
 brew "lsd"
+brew "mas"
 brew "neovim"
 # brew "nushell"
 brew "openssh"
@@ -46,6 +47,8 @@ cask "font-noto-emoji"
 cask "font-noto-sans-cjk"
 
 cask "amethyst"
-cask "hiddenbar"
 cask "kitty"
 cask "rectangle"
+
+mas "hiddenbar", id: 1452453066
+mas "Xcode", id: 497799835

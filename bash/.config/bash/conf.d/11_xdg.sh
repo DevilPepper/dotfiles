@@ -32,11 +32,11 @@ export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export VAGRANT_HOME=$XDG_DATA_HOME/vagrant
 export STACK_XDG=true
 
-PATH=$PATH:/usr/local/go/bin
-PATH=$PATH:$CARGO_HOME/bin
-PATH=$PATH:$N_PREFIX/bin
-PATH=$PATH:$PYENV_ROOT/shims
-PATH=$PATH:$XDG_DATA_HOME/gem/ruby/current/bin
+PATH=/usr/local/go/bin:$PATH
+PATH=$CARGO_HOME/bin:$PATH
+PATH=$N_PREFIX/bin:$PATH
+PATH=$PYENV_ROOT/shims:$PATH
+PATH=$XDG_DATA_HOME/gem/ruby/current/bin:$PATH
 
 export PATH
 
