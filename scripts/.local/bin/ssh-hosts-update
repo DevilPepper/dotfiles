@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+known_hosts=~/.ssh/known_hosts
+
+touch $known_hosts
+truncate -s 0 $known_hosts
+ssh-keyscan github.com    2> /dev/null | sort >> $known_hosts
+ssh-keyscan gitlab.com    2> /dev/null | sort >> $known_hosts
+ssh-keyscan bitbucket.org 2> /dev/null | sort >> $known_hosts
+chmod 644 $known_hosts

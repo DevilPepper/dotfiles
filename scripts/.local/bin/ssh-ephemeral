@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# ssh wrapper for ephemeral hosts
+# Use it like ssh
+
+trap '[[ $? -eq 130 ]] && kill -INT $$' CHLD
+
+fingerprint=$(gum input --placeholder "Enter the host's fingerprint")
+algorithm=$(echo "$fingerprint" | sed 's/.* (\(.*\)).*/\1/g')
+known_hosts=$(mktemp)
+
+ssh-keyscan -t $algorithm "$@" 2> /dev/null > $known_hosts
+actual_fingerprint=$(ssh-keygen -lf $known_hosts | cut -d' ' -f2)
+expected_fingerprint=$(echo "$fingerprint" | cut -d' ' -f1)
+
+if [[ "$actual_fingerprint" != "$expected_fingerprint" ]]; then
+  echo "Host's fingerprint didn't match!" >&2
+  exit 1
+fi
+
+ssh -o UserKnownHostsFile=$known_hosts "$@"
