@@ -5,16 +5,30 @@
 
 trap '[[ $? -eq 130 ]] && kill -INT $$' CHLD
 
-fingerprint=$(gum input --placeholder "Enter the host's fingerprint")
-algorithm=$(echo "$fingerprint" | sed 's/.* (\(.*\)).*/\1/g')
-known_hosts=$(mktemp)
+function get_ephemeral_known_hosts() {
+  fingerprint=$(CLICOLOR_FORCE=true gum input --placeholder "Enter the host's fingerprint")
+  algorithm=$(echo "$fingerprint" | sed 's/.* (\(.*\)).*/\1/g')
+  known_hosts=$(mktemp)
 
-ssh-keyscan -t $algorithm "$@" 2> /dev/null > $known_hosts
-actual_fingerprint=$(ssh-keygen -lf $known_hosts | cut -d' ' -f2)
-expected_fingerprint=$(echo "$fingerprint" | cut -d' ' -f1)
+  ssh-keyscan -t "$algorithm" "$@" 2> /dev/null > $known_hosts
+  expected_fingerprint=$(echo "$fingerprint" | cut -d' ' -f1)
+  actual_fingerprint=$(ssh-keygen -lf $known_hosts | cut -d' ' -f2)
 
-if [[ "$actual_fingerprint" != "$expected_fingerprint" ]]; then
-  echo "Host's fingerprint didn't match!" >&2
+  if [ -z "$actual_fingerprint" ]; then
+    exit 1
+  fi
+
+  if [[ "$actual_fingerprint" != "$expected_fingerprint" ]]; then
+    echo "Host's fingerprint didn't match!" >&2
+    exit 1
+  fi
+
+  echo "$known_hosts"
+}
+export -f get_ephemeral_known_hosts
+
+known_hosts=$(bkt --ttl=10m --discard-failures -- bash -c 'get_ephemeral_known_hosts "$@"' _ "$@")
+if [ -z "$known_hosts" ]; then
   exit 1
 fi
 
