@@ -4,8 +4,8 @@
 [commit]
   gpgsign = true
 [include]
-  path = ~/.config/git/override.gitconfig
   path = ~/.config/git/secret.gitconfig
+  path = ~/.config/git/override.gitconfig
 [alias]
   co          = checkout
   cp          = clone --single-branch
