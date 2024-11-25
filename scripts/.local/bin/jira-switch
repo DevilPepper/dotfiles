@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+jira_server=$( \
+  cat ~/.config/.jira/.config.yml 2> /dev/null \
+  | grep 'server: ' \
+  | cut -d' ' -f2 \
+)
+
+server=""
+if [[ -n "$jira_server" ]]; then
+  server="--server $jira_server"
+fi
+
+jira init $server \
+  --login $(git config user.email | tr '[:upper:]' '[:lower:]') \
+  --force
