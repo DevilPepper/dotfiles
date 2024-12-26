@@ -14,4 +14,5 @@ PATH=$PATH:/usr/local/bin
 PATH=/opt/homebrew/bin:$PATH
 PATH=~/.local/bin:$PATH
 PATH=$PATH:./node_modules/.bin
+PATH=$PATH:./.venv/bin
 export PATH
