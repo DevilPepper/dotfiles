@@ -6,6 +6,7 @@ export VISUAL=nvim
 
 export JIRA_PAGER=bat
 export VIRTUAL_ENV_DISABLE_PROMPT=true
+export UV_NO_SYNC=1
 
 export HOSTNAME
 
