@@ -16,6 +16,7 @@ main() {
         buildTree ${dir%/}
     done
 
+    cleanTree
     # # clone plugins if we have nvim
     # if [ ! -z $(which nvim) ]; then
     #   data_dir=~/.local/share/nvim/site
@@ -54,6 +55,11 @@ function buildTree {
             ln -sf $path $DESTINATION/${path#$SCRIPT_DIR/*/}
         fi
     done
+}
+
+function cleanTree {
+  find $DESTINATION/.config -type l ! -exec [ -e {} ] \; -print | xargs rm
+  find $DESTINATION/.local -type l ! -exec [ -e {} ] \; -print | xargs rm
 }
 
 main "$@"
