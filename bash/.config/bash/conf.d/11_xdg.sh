@@ -6,6 +6,7 @@ XDG_STATE_HOME=~/.local/state
 # Make sure these directories exist...
 mkdir -p $XDG_CACHE_HOME $XDG_CONFIG_HOME $XDG_DATA_HOME $XDG_STATE_HOME
 
+export ANDROID_HOME=$XDG_DATA_HOME/android
 export ANSIBLE_HOME=$XDG_CONFIG_HOME/ansible
 export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
 export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle
@@ -48,3 +49,4 @@ PATH=$XDG_DATA_HOME/gem/ruby/current/bin:$PATH
 export PATH
 
 alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"
+alias adb="HOME=$ANDROID_HOME adb"
