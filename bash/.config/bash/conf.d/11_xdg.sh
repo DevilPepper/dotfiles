@@ -6,7 +6,8 @@ XDG_STATE_HOME=~/.local/state
 # Make sure these directories exist...
 mkdir -p $XDG_CACHE_HOME $XDG_CONFIG_HOME $XDG_DATA_HOME $XDG_STATE_HOME
 
-export ANDROID_HOME=$XDG_DATA_HOME/android
+export ANDROID_HOME=$XDG_DATA_HOME/android/sdk
+export ANDROID_USER_HOME=$XDG_DATA_HOME/android/user
 export ANSIBLE_HOME=$XDG_CONFIG_HOME/ansible
 export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
 export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle
@@ -45,6 +46,7 @@ PATH=$PYENV_ROOT/shims:$PATH
 PATH=$PIPX_BIN_DIR:$PATH
 PATH=$UV_TOOL_BIN_DIR:$PATH
 PATH=$XDG_DATA_HOME/gem/ruby/current/bin:$PATH
+PATH=$PATH:$ANDROID_HOME/cmdline-tools/bin:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
 
 export PATH
 

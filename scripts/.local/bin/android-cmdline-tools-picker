@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+if [ -d "$ANDROID_HOME/cmdline-tools" ]; then
+  version=$( \
+    ls $ANDROID_HOME/cmdline-tools \
+    | grep -v 'bin' \
+    | fzf --preview "bat --color=always $ANDROID_HOME/cmdline-tools/{}/source.properties" \
+  )
+  if [ -n "$version" ]; then
+    ln -sf $ANDROID_HOME/cmdline-tools/$version/bin $ANDROID_HOME/cmdline-tools/bin
+  fi
+fi
