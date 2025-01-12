@@ -51,4 +51,4 @@ PATH=$PATH:$ANDROID_HOME/cmdline-tools/bin:$ANDROID_HOME/tools:$ANDROID_HOME/too
 export PATH
 
 alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"
-alias adb="HOME=$ANDROID_HOME adb"
+# alias adb="HOME=$ANDROID_HOME adb"
