@@ -58,8 +58,8 @@ function buildTree {
 }
 
 function cleanTree {
-  find $DESTINATION/.config -type l ! -exec [ -e {} ] \; -print | xargs rm
-  find $DESTINATION/.local -type l ! -exec [ -e {} ] \; -print | xargs rm
+  find $DESTINATION/.config -type l ! -exec [ -e {} ] \; -print | xargs -I{} rm {}
+  find $DESTINATION/.local  -type l ! -exec [ -e {} ] \; -print | xargs -I{} rm {}
 }
 
 main "$@"
