@@ -11,7 +11,8 @@ function repo_preview() {
         lsd -la $repo_path
     }
 }
-export -f repo_preview
+# export -f repo_preview
+REPO_PREVIEW="$(declare -f repo_preview)"
 
 git_status() {
     git -C $repo_path is-repo && {
@@ -86,7 +87,7 @@ get_repos() {
 choices=$(get_repos)
 choice=$(echo -e "$choices" \
     | fzf --ansi \
-          --preview="bash -c 'repo_preview {}'" \
+          --preview="$REPO_PREVIEW; repo_preview {}" \
           --preview-window='right:75%:wrap' \
 )
 

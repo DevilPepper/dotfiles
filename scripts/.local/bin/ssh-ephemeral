@@ -25,9 +25,10 @@ function get_ephemeral_known_hosts() {
 
   echo "$known_hosts"
 }
-export -f get_ephemeral_known_hosts
+# export -f get_ephemeral_known_hosts
+GET_EPHEMERAL_KNOWN_HOSTS="$(declare -f get_ephemeral_known_hosts)"
 
-known_hosts=$(bkt --ttl=10m --discard-failures -- bash -c 'get_ephemeral_known_hosts "$@"' _ "$@")
+known_hosts=$($GET_EPHEMERAL_KNOWN_HOSTS; bkt --ttl=10m --discard-failures -- bash -c 'get_ephemeral_known_hosts "$@"' _ "$@")
 if [ -z "$known_hosts" ]; then
   exit 1
 fi
