@@ -1,0 +1,27 @@
+script_name="$1"
+shift
+
+args=$( \
+  getopt \
+    --long init,prompt,headless \
+    -n "$script_name" \
+    -- "$@" \
+)
+if [ $? != 0 ]; then
+  exit 1
+fi
+
+prompt_user=false
+initialize=false
+
+eval set -- "$args"
+while [ -n "$1" ]; do
+  case "$1" in
+    --init ) initialize=true ;;
+    --prompt ) prompt_user=true ;;
+    -- ) shift; break ;;
+  esac
+  shift
+done
+
+echo "$prompt_user $initialize"

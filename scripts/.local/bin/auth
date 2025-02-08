@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+trap '[[ $? -eq 130 ]] && kill -INT $$' CHLD
+
+show_help() {
+  echo "Usage: auth [OPTIONS]"
+  echo "      --init      Do initial authentication"
+  echo "      --headless  Don't ask any questions. Read config at ~/.config/auth.sh.conf (Example file in ~/.local/bin/auth.d/auth.sh.conf)"
+  echo "  -h, --help      Show this help message"
+  exit 0
+}
+
+args=$( \
+  getopt \
+    -o h \
+    --long help,init,headless \
+    -n 'auth' \
+    -- "$@" \
+)
+
+if [ $? != 0 ]; then
+  exit 1
+fi
+
+eval set -- "$args"
+while [ -n "$1" ]; do
+  case "$1" in
+    -h | --help ) show_help; exit 0 ;;
+    --headless ) headless=1 ;;
+    -- ) shift; break ;;
+  esac
+  shift
+done
+eval set -- "$args"
+
+if [[ "$headless" -eq "1" ]]; then
+  if [[ -f ~/.config/auth.sh.conf ]]; then
+  else
+    echo "~/.config/auth.sh.conf was not found!" >&2
+    exit 1
+  fi
+else
+  for auth_script in ~/.local/bin/auth.d/*.sh; do
+    if [[ -f $auth_script && -x $auth_script ]]; then
+      source $auth_script --prompt "$@"
+    fi
+  done
+fi
+
+for auth_script in ~/.local/bin/auth.d/*; do
+  if [[ -f $auth_script && -x $auth_script ]]; then
+    bash $auth_script "$@"
+  fi
+done
