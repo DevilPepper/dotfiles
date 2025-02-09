@@ -17,6 +17,7 @@ main() {
     done
 
     cleanTree
+    fixSSHConfig
     # # clone plugins if we have nvim
     # if [ ! -z $(which nvim) ]; then
     #   data_dir=~/.local/share/nvim/site
@@ -60,6 +61,11 @@ function buildTree {
 function cleanTree {
   find $DESTINATION/.config -type l ! -exec [ -e {} ] \; -print | xargs -I{} rm {}
   find $DESTINATION/.local  -type l ! -exec [ -e {} ] \; -print | xargs -I{} rm {}
+}
+
+function fixSSHConfig {
+  mkdir -p ~/.ssh/config.d
+  echo "RevokedHostKeys $HOME/.ssh/revoked_keys" > ~/.ssh/config.d/revoked_keys.conf
 }
 
 main "$@"
