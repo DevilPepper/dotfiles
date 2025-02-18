@@ -84,7 +84,8 @@ function symlink_repo() {
     local link_path="$2"
     local use_ssh="$3"
 
-    repo_path="$code_path/$(basename $owner_repo)"
+    repo_path="$code_path/$owner_repo"
+    repo_parent=$(dirname "$repo_path")
     link_parent=$(dirname "$link_path")
     repo_url="https://github.com/${owner_repo}.git"
     if [ "$use_ssh" = true ]; then
@@ -92,8 +93,9 @@ function symlink_repo() {
     fi
 
     mkdir -p $link_parent
+    mkdir -p $repo_parent
     rm -rf $repo_path
-    rm -f $link_path
+    rm -rf $link_path
 
     git clone --recurse-submodules $repo_url $repo_path
     ln -sf $repo_path $link_path

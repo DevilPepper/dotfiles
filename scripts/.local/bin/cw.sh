@@ -73,14 +73,15 @@ git_color() {
 }
 
 get_repos() {
-    for repo_path in $(ls -d $CODE_DIR/* );
+    for repo_path in $(ls -d $CODE_DIR/*/* );
     do
+        local owner=$(basename $(dirname $repo_path))
         local repo=$(basename $repo_path)
 
         local state=$(git_status $repo_path)
         local color=$(git_color $state)
-        # Now output the actual code to insert the branch and status
-        echo -e "${color}${repo}${reset_color}"  # last bit resets color
+
+        echo -e "${color}${owner}/${repo}${reset_color}"
     done
 }
 
