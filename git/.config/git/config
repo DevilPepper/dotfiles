@@ -49,7 +49,6 @@
   editor = vim
   excludesfile = ~/.config/git/ignore
   filemode = true
-  hooksPath = .githooks
   autocrlf = false
   eol = lf
 [fetch]
