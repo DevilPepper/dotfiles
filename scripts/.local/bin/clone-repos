@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+function git_clone() {
+  base_uri="$1"
+  repo="$2"
+  code_dir=~/code
+
+  repo_dir=$code_dir/$repo
+  if [ ! -d $repo_dir ]; then
+    owner=$(dirname "$repo")
+    repo=$(basename "$repo")
+    mkdir -p $code_dir/$owner
+    git clone ${base_uri}${owner}${repo}.git $repo_dir
+  fi
+}
+
+if [ -f ~/.config/repos/github-ssh.txt ]; then
+  cat ~/.config/repos/github-ssh.txt | while read -r repo; do
+    git_clone "git@github.com:" "$repo"
+  done
+fi
+
+if [ -f ~/.config/repos/github-http.txt ]; then
+  cat ~/.config/repos/github-http.txt | while read -r repo; do
+    git_clone "https://github.com/" "$repo"
+  done
+fi
+
+if [ -f ~/.config/repos/gitlab-ssh.txt ]; then
+  cat ~/.config/repos/gitlab-ssh.txt | while read -r repo; do
+    git_clone "git@gitlab.com:" "$repo"
+  done
+fi
+
+if [ -f ~/.config/repos/gitlab-http.txt ]; then
+  cat ~/.config/repos/gitlab-http.txt | while read -r repo; do
+    git_clone "https://gitlab.com/" "$repo"
+  done
+fi
+
+if [ -f ~/.config/repos/bitbucket-ssh.txt ]; then
+  cat ~/.config/repos/bitbucket-ssh.txt | while read -r repo; do
+    git_clone "git@bitbucket.org:" "$repo"
+  done
+fi
+
+if [ -f ~/.config/repos/bitbucket-http.txt ]; then
+  cat ~/.config/repos/bitbucket-http.txt | while read -r repo; do
+    git_clone "https://bitbucket.org/" "$repo"
+  done
+fi
