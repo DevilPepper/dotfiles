@@ -1,0 +1,21 @@
+#!/usr/bin/env -S uv --quiet run --script
+# /// script
+# requires-python = ">=3.12"
+# ///
+
+import json
+import sys
+
+if len(sys.argv) < 3:
+  print("Usage: filter-json <filter_key> <filter_text>", file=sys.stderr)
+  sys.exit(2)
+
+filter_key = sys.argv[1]
+filter_text = sys.argv[2]
+
+data = json.load(sys.stdin)
+if not isinstance(data, list):
+  raise RuntimeError('JSON must be a list')
+
+filtered = [item for item in data if filter_text == str(item.get(filter_key))]
+json.dump(filtered, sys.stdout)
