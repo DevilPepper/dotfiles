@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-comm -13 <(git ls-remote origin | grep refs/heads | sed "s/.*refs\/heads\///") <(git branch -l | cut -c3-)
+comm -13 <(git ls-remote origin | grep refs/heads | sed "s/.*refs\/heads\///" | sort) <(git branch -l | cut -c3- | sort)

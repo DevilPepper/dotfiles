@@ -8,7 +8,7 @@ function fix_jira_output() {
   | gum format
 }
 # export -f fix_jira_output
-FIX_JIRA_OUTPUT="$(declare -f clone_dotfiles)"
+FIX_JIRA_OUTPUT="$(declare -f fix_jira_output)"
 
 function view_git_issue() {
   local ticket="$1"
@@ -16,7 +16,7 @@ function view_git_issue() {
   GH_FORCE_TTY=66% gh issue view "$ticket" --repo "$repo" 2> /dev/null || jira issue view "$ticket" --comments 0 --plain | fix_jira_output
 }
 # export -f view_git_issue
-VIEW_GIT_ISSUE="$FIX_JIRA_OUTPUT; $(declare -f clone_dotfiles)"
+VIEW_GIT_ISSUE="$FIX_JIRA_OUTPUT; $(declare -f view_git_issue)"
 
 remote_url=$(git config --get remote.upstream.url || git config --get remote.origin.url)
 if [[ -z "$remote_url" ]]; then

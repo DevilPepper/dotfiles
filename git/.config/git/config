@@ -12,7 +12,7 @@
   get         = ! git fetch && git rebase FETCH_HEAD
   cwd         = ! pwd
   root        = ! git rev-parse --absolute-git-dir | awk -F'/.git' '{ print $1 }'
-  adog        = log --all --decorate --oneline --graph
+  adog         = "!git_adog() { git log ${1:---all} --decorate --oneline --graph; }; git_adog"
   is-repo     = ! git rev-parse --is-inside-work-tree > /dev/null 2>&1
   tfoh        = ! rm .git/REBASE_HEAD .git/MERGE_HEAD
   work        = ! git new $(git_work)
@@ -40,7 +40,7 @@
   fzb         = "!git_fzb() { git branch | sed 's/[ \\t\\*]*//' | fzf --preview=\"git_fzb_preview ${1-$(git default)} {}\"; }; git_fzb"
   fzc         = "!git_fzc() { git checkout $(git fzb $*); }; git_fzc"
   fzd         = "!git_fzd() { git diff --name-only $* | fzf --preview=\"git diff --color=always $* -- {}\"; }; git_fzd"
-  fzs         = "!git_fzs() { git stage $(git ls-files -dmo --exclude-standard | fzf --preview=\"git_fzs_preview {}\"); }; git_fzs"
+  fzs         = "!git_fzs() { git stage $(git ls-files -mo --exclude-standard | fzf --preview=\"git_fzs_preview {}\"); }; git_fzs"
 
   bb          = "!git_bb() { repo=$1; shift; git clone git@bitbucket.org:$repo.git $*; }; git_bb"
   gh          = "!git_gh() { repo=$1; shift; git clone git@github.com:$repo.git $*; }; git_gh"

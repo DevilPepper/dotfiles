@@ -29,6 +29,8 @@ epic=$( \
        --silent \
   | jq '.fields.parent.fields.summary // empty' --raw-output \
   | tr -d '[:space:]' \
+  | tr '&' '+' \
+  | tr ':' '-' \
 )
 
 username=$(git config --get user.name)
