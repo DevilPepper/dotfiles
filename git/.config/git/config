@@ -9,11 +9,12 @@
 [alias]
   co          = checkout
   cp          = clone --single-branch
-  get         = ! git fetch && git rebase FETCH_HEAD
   cwd         = ! pwd
   root        = ! git rev-parse --absolute-git-dir | awk -F'/.git' '{ print $1 }'
-  adog         = "!git_adog() { git log ${1:---all} --decorate --oneline --graph; }; git_adog"
+  adog        = "!git_adog() { git log ${1:---all} --decorate --oneline --graph; }; git_adog"
   is-repo     = ! git rev-parse --is-inside-work-tree > /dev/null 2>&1
+
+  over-here   = "!git_over_here() { git fetch ${1:--} ${2:--} && git rebase FETCH_HEAD $3; }; git_over_here $(git config --get branch.$(git branch --show-current).remote) $(git branch --show-current)"
   tfoh        = ! rm .git/REBASE_HEAD .git/MERGE_HEAD
   work        = ! git new $(git_work)
 
@@ -23,7 +24,6 @@
   about       = ! git description $(git branch | grep \\* | cut -d ' ' -f2)
   alias       = ! git config --get-regexp alias | sed 's/alias\\./git /'
   amend       = ! git commit --amend --no-edit
-  over-here   = ! git fetch origin $(git rev-parse --abbrev-ref HEAD) && git reset --hard FETCH_HEAD
   rmignored   = ! git ls-files -i --exclude-from=.gitignore | xargs --no-run-if-empty git rm --cached
 
   conflux     = ! git_diff_upstream_local | xargs --no-run-if-empty git delete
