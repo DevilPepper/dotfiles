@@ -9,6 +9,9 @@ export VIRTUAL_ENV_DISABLE_PROMPT=true
 export UV_NO_SYNC=1
 export CARGO_CARGO_NEW_VCS=none
 
+export TERM=xterm
+export COLORTERM=
+
 export HOSTNAME
 
 # Mac doesn't include these in the default PATH and homebrew x86_64 installs in /usr/local/bin
