@@ -11,12 +11,14 @@ function main() {
     step_name="$3"
   fi
 
-
+  # TODO: add support for tag pipelines (CircleCI API should have tag and revision query params)
   pipeline=$( \
     curl --fail --silent --show-error --location \
       --header "Circle-Token: ${circle_token}" \
       --url "https://circleci.com/api/v2/project/${CIRCLECI_PROJECT_SLUG}/pipeline?branch=${git_branch}" \
-    | jq --arg revision "$git_revision" '.items | map(select(.vcs.revision == $revision)) | .[0]' \
+    | jq --arg revision "$git_revision" \
+         --arg trigger "${CIRCLECI_PIPELINE_TRIGGER:-webhook}" \
+         '.items | map(select(.vcs.revision == $revision)) | map(select(.trigger.type == $trigger)) | .[0]' \
   )
 
   pipeline_id=$(echo "$pipeline" | jq -r '.id')
