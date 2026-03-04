@@ -5,6 +5,7 @@
   gpgsign = true
 [include]
   path = ~/.config/git/secret.gitconfig
+  path = ~/.config/git/gpg.gitconfig
   path = ~/.config/git/override.gitconfig
 [alias]
   co          = checkout
