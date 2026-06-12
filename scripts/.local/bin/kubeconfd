@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+ctx=$(kubectl config current-context 2> /dev/null || echo 'n/a')
+KUBECONFIG=$( \
+  find ~/.kube/conf.d -name '*.yaml' \
+  | tr '\n' ':' \
+  | sed 's/:$//' \
+)
+
+KUBECONFIG=$KUBECONFIG kubectl config view --flatten > ~/.kube/config
+if ! kubectl config get-contexts "$ctx" > /dev/null 2>&1; then
+  ctx=$( \
+    kubectl config get-contexts -o name \
+    | fzf \
+      --exit-0 \
+      --select-1 \
+      --preview='kubectl config get-contexts {}' \
+  )
+  if [ -z "$ctx" ]; then
+    echo "Deleting KUBECONFIG. You must choose a context" >&2
+    rm ~/.kube/config
+    exit 1
+  fi
+fi
+kubectl config use-context "$ctx"

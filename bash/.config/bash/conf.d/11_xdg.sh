@@ -19,6 +19,7 @@ export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
 export IRBRC=$XDG_CONFIG_HOME/irb/config.rb
+export KREW_ROOT=$XDG_DATA_HOME/krew
 export LESSHISTFILE=$XDG_STATE_HOME/less/history
 export N_PREFIX=$XDG_DATA_HOME/n
 export NODE_REPL_HISTORY=$XDG_STATE_HOME/history.js
@@ -42,6 +43,7 @@ export STACK_XDG=true
 
 PATH=/usr/local/go/bin:$PATH
 PATH=$CARGO_HOME/bin:$PATH
+PATH=$KREW_ROOT/bin:$PATH
 PATH=$N_PREFIX/bin:$PATH
 PATH=$PYENV_ROOT/shims:$PATH
 PATH=$PIPX_BIN_DIR:$PATH
