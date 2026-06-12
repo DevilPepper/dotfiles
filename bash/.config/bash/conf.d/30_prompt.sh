@@ -1,5 +1,5 @@
 function starship_hr() {
-    if [[ $? -ne 0 ]]; then
+    if [[ $? -ne 0 && $? -ne 130 ]]; then
         tput setaf 1
     else
         tput setaf 0
