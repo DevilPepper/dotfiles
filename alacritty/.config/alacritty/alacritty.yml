@@ -1,7 +1,7 @@
 # All imports must either be absolute paths starting with `/`, or paths relative
 # to the user's home directory starting with `~/`.
 import:
- - ~/.config/alacritty/themes/Catppuccin_Mocha.yml
+ - ~/.config/alacritty/themes/rice.yml
 
 window:
   # Spread additional padding evenly around the terminal content.

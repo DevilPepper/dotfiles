@@ -71,4 +71,8 @@ if [ -e $zsh_syntax_highlighting_path ]; then
     ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=#767573'
     ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=#84898d'
     ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=#949492'
+    # ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=241'
+    # ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=243'
+    # ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=245'
+    # ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=247'
 fi
