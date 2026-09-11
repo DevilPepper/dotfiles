@@ -18,6 +18,7 @@ main() {
 
     cleanTree
     fixSSHConfig
+    ln -sfT $SCRIPT_DIR $DESTINATION/dotfiles
     # # clone plugins if we have nvim
     # if [ ! -z $(which nvim) ]; then
     #   data_dir=~/.local/share/nvim/site
@@ -53,7 +54,7 @@ function buildTree {
             buildTree $path
         else
             mkdir -p $DESTINATION/${tree#$SCRIPT_DIR/*/}
-            ln -sf $path $DESTINATION/${path#$SCRIPT_DIR/*/}
+            ln -sfT $path $DESTINATION/${path#$SCRIPT_DIR/*/}
         fi
     done
 }
