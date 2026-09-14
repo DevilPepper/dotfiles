@@ -18,6 +18,7 @@
   over-here   = "!git_over_here() { git fetch ${1:--} ${2:--} && git rebase FETCH_HEAD $3; }; git_over_here $(git config --get branch.$(git branch --show-current).remote) $(git branch --show-current)"
   tfoh        = ! rm .git/REBASE_HEAD .git/MERGE_HEAD
   work        = ! git new $(git_work)
+  jira        = "!git_jira() { jira issue view $(basename $(git branch --show-current)) $*; }; git_jira"
 
   fix-default = remote set-head origin -a
   default     = rev-parse --abbrev-ref origin/HEAD
