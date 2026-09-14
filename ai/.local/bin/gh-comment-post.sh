@@ -1,10 +1,22 @@
 #!/usr/bin/env bash
 
-# Use this script to post an inline comment given the file path, line number and path to markdown file containing the reply body
-# optional options (only use after positional args):
-# --side by default this is RIGHT for addition/unchanged line. Can be LEFT for deletion line
-# --start-line if used, this is the start of your multi-line review comment
-# --start-side same as --side but for the start line
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+  cat <<EOF
+Use this script to post an inline comment given the file path, line number and path to markdown file containing the comment body
+
+Usage: gh-comment-post.sh <file_path> <file_line> <comment_md> [options]
+  e.g. gh-comment-post.sh src/main.rs 42 /tmp/vibecode/TIX-123/comment.md
+  e.g. gh-comment-post.sh src/main.rs 42 /tmp/vibecode/TIX-123/comment.md --side LEFT
+  e.g. gh-comment-post.sh src/main.rs 42 /tmp/vibecode/TIX-123/comment.md --start-line 40 --start-side LEFT
+
+Options:
+  --side <RIGHT|LEFT>       Comment side (default: RIGHT for addition/unchanged, LEFT for deletion)
+  --start-line <number>     Start line for multi-line review comment
+  --start-side <RIGHT|LEFT> Same as --side but for the start line
+  --help, -h                Show this help message
+EOF
+  exit 0
+fi
 
 file_path=$1
 file_line=$2

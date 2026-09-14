@@ -1,7 +1,17 @@
 #!/usr/bin/env bash
 
-# Use this script to list unresolved PR comments not written by me (json) whether they are inline or not
-# Inline scripts have thread_id, path, and line; while issue comments have these set to null
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+  cat <<EOF
+Use this script to list unresolved PR comments not written by me (json) whether they are inline or not
+Inline scripts have thread_id, path, and line; while issue comments have these set to null
+
+Usage: gh-comments-list.sh
+
+Options:
+  --help, -h    Show this help message
+EOF
+  exit 0
+fi
 pr=$(gh pr view --json number -q .number)
 me=$(git config user.name)
 
