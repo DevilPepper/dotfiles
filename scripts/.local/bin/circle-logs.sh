@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ -z "$CIRCLECI_PROJECT_SLUG" || -z "$circle_token" || -z "$git_branch" || -z "$git_revision" ]]; then
+if [[ -z "$CIRCLECI_PROJECT_SLUG" || -z "$circle_token" || -z "$git_branch_urlencoded" || -z "$git_revision" ]]; then
   echo "Don't run this script directly. Instead run \`circle\`" >&2
   exit 1
 fi
@@ -15,7 +15,7 @@ function main() {
   pipeline=$( \
     curl --fail --silent --show-error --location \
       --header "Circle-Token: ${circle_token}" \
-      --url "https://circleci.com/api/v2/project/${CIRCLECI_PROJECT_SLUG}/pipeline?branch=${git_branch}" \
+      --url "https://circleci.com/api/v2/project/${CIRCLECI_PROJECT_SLUG}/pipeline?branch=${git_branch_urlencoded}" \
     | jq --arg revision "$git_revision" \
          --arg trigger "${CIRCLECI_PIPELINE_TRIGGER:-webhook}" \
          '.items | map(select(.vcs.revision == $revision)) | map(select(.trigger.type == $trigger)) | .[0]' \

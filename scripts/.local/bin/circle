@@ -24,8 +24,11 @@ if [[ -z "$circle_token" ]]; then
   exit 1
 fi
 
-export git_revision=$(git rev-parse --verify HEAD)
+git_commit=$(git log --format='format:%H %s' --invert-grep --grep="\[skip ci\]" -n 1)
+export git_revision=$(echo "$git_commit" | cut -d ' ' -f1)
+export git_message=$(echo "$git_commit" | cut -d ' ' -f2-)
 export git_branch=$(git branch --show-current)
+export git_branch_urlencoded=$(echo $git_branch | tr -d '\n' | jq -sRr @uri)
 
 if [[ "$1" == "status" ]]; then
   shift
