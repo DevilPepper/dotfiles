@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+if [ "$#" -lt 1 ]; then
+  >&2 echo "Usage: gcp-logs <search_term> [gcloud_flags...]"
+  exit 1
+fi
+
+search_term="$1"
+shift
+
+logs=$(\
+  gum spin --title="gcloud logging read '${search_term}' ..." \
+    -- gcloud logging read "$search_term AND trace:*" \
+       --limit=10 \
+       --freshness=5m \
+       --format='json(trace, timestamp, severity, jsonPayload, textPayload, httpRequest)' \
+       --order=desc \
+       "$@" \
+)
+
+choice=$( \
+  echo "$logs" \
+  | jq -r '.[] | [
+      .trace,
+      .timestamp,
+      .severity,
+      (.jsonPayload.message // .jsonPayload.msg // .textPayload // "\(.httpRequest.status // "") \(.httpRequest.requestMethod // "") \(.httpRequest.requestUrl)")
+    ] | @tsv' \
+  | fzf --ansi \
+        --delimiter='\t' \
+        --accept-nth=1 \
+        --with-nth=2.. \
+        --preview='echo {4..}' \
+        --preview-label="Select a log to view full request trace" \
+)
+
+if [ -z "$choice" ]; then
+  exit 0
+fi
+
+logs=$(\
+  gum spin --title="gcloud logging read trace=${choice} ..." \
+    -- gcloud logging read trace=${choice} \
+       --format='json(timestamp, severity, jsonPayload, textPayload, httpRequest)' \
+)
+
+echo "$logs" \
+| jq -r '
+    sort_by(.timestamp)
+    | .[]
+    | [
+      .timestamp,
+      .severity,
+      (.jsonPayload.message // .jsonPayload.msg // .textPayload // "\(.httpRequest.status // "") \(.httpRequest.requestMethod // "") \(.httpRequest.requestUrl)")
+    ]
+    | @tsv
+  '
